@@ -46,4 +46,5 @@
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>ssh-keygen -t ed25519 -C “your email" //找到自己的密钥
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><img src="/21.png" alt="20"></p>
 <p>然后去gitLab这样的远程仓库，点击设置，ssh，添加上自己的密钥</p>
+<h3 id="本地连接远程仓库" tabindex="-1"><a class="header-anchor" href="#本地连接远程仓库" aria-hidden="true">#</a> 本地连接远程仓库</h3>
 </div></template>

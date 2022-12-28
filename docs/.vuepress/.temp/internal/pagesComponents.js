@@ -25,10 +25,10 @@ export const pagesComponents = {
   "v-50b6f378": defineAsyncComponent(() => import(/* webpackChunkName: "v-50b6f378" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/css/css学习笔记.html.vue")),
   // path: /css/Grid.html
   "v-f9b58c64": defineAsyncComponent(() => import(/* webpackChunkName: "v-f9b58c64" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/css/Grid.html.vue")),
-  // path: /git/git.html
-  "v-7e92875d": defineAsyncComponent(() => import(/* webpackChunkName: "v-7e92875d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/git/git.html.vue")),
   // path: /canvas/canvas%E5%9F%BA%E7%A1%80.html
   "v-acfd2baa": defineAsyncComponent(() => import(/* webpackChunkName: "v-acfd2baa" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/canvas/canvas基础.html.vue")),
+  // path: /git/git.html
+  "v-7e92875d": defineAsyncComponent(() => import(/* webpackChunkName: "v-7e92875d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/git/git.html.vue")),
   // path: /js/class.html
   "v-65260ee4": defineAsyncComponent(() => import(/* webpackChunkName: "v-65260ee4" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/js/class.html.vue")),
   // path: /js/dom.html

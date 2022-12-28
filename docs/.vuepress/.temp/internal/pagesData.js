@@ -23,10 +23,10 @@ export const pagesData = {
   "v-50b6f378": () => import(/* webpackChunkName: "v-50b6f378" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/css/css学习笔记.html.js").then(({ data }) => data),
   // path: /css/Grid.html
   "v-f9b58c64": () => import(/* webpackChunkName: "v-f9b58c64" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/css/Grid.html.js").then(({ data }) => data),
-  // path: /git/git.html
-  "v-7e92875d": () => import(/* webpackChunkName: "v-7e92875d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/git/git.html.js").then(({ data }) => data),
   // path: /canvas/canvas%E5%9F%BA%E7%A1%80.html
   "v-acfd2baa": () => import(/* webpackChunkName: "v-acfd2baa" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/canvas/canvas基础.html.js").then(({ data }) => data),
+  // path: /git/git.html
+  "v-7e92875d": () => import(/* webpackChunkName: "v-7e92875d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/git/git.html.js").then(({ data }) => data),
   // path: /js/class.html
   "v-65260ee4": () => import(/* webpackChunkName: "v-65260ee4" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/js/class.html.js").then(({ data }) => data),
   // path: /js/dom.html
