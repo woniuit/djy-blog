@@ -112,3 +112,27 @@ ssh-keygen -t ed25519 -C “your email" //找到自己的密钥
 
 ### 本地连接远程仓库
 
+**查看是否有连接远程仓库**
+
+```
+git remote  //如果出现origin就是连接了
+```
+
+```
+git remote -v //查看连接的具体仓库
+```
+
+**连接远程仓库**
+
+```
+git init //先初始化仓库
+git remote add origin 仓库地址
+git remote //查看是否连接成功
+```
+
+**移除远程连接**
+
+```
+git remote remove origin
+```
+
