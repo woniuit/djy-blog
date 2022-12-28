@@ -101,3 +101,12 @@ git reset --hard HEAD~1000 //上1000个版本
 git reset --hard 1234 //回退到指定版本
 ```
 
+### 远程仓库验证-SSH密钥
+
+```
+ssh-keygen -t ed25519 -C “your email" //找到自己的密钥
+```
+![20](/21.png)
+
+然后去gitLab这样的远程仓库，点击设置，ssh，添加上自己的密钥
+

@@ -42,4 +42,8 @@
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git reset --hard HEAD^^ //回退到上上版本
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git reset --hard HEAD~1000 //上1000个版本
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git reset --hard 1234 //回退到指定版本
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="远程仓库验证-ssh密钥" tabindex="-1"><a class="header-anchor" href="#远程仓库验证-ssh密钥" aria-hidden="true">#</a> 远程仓库验证-SSH密钥</h3>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>ssh-keygen -t ed25519 -C “your email" //找到自己的密钥
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><img src="/21.png" alt="20"></p>
+<p>然后去gitLab这样的远程仓库，点击设置，ssh，添加上自己的密钥</p>
+</div></template>
