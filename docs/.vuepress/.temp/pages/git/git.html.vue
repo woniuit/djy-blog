@@ -47,4 +47,13 @@
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><img src="/21.png" alt="20"></p>
 <p>然后去gitLab这样的远程仓库，点击设置，ssh，添加上自己的密钥</p>
 <h3 id="本地连接远程仓库" tabindex="-1"><a class="header-anchor" href="#本地连接远程仓库" aria-hidden="true">#</a> 本地连接远程仓库</h3>
-</div></template>
+<p><strong>查看是否有连接远程仓库</strong></p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git remote  //如果出现origin就是连接了
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git remote -v //查看连接的具体仓库
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>连接远程仓库</strong></p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git init //先初始化仓库
+git remote add origin 仓库地址
+git remote //查看是否连接成功
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>移除远程连接</strong></p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git remote remove origin
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>
