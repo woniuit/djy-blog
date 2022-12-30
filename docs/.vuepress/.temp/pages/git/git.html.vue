@@ -56,4 +56,12 @@ git remote add origin 仓库地址
 git remote //查看是否连接成功
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>移除远程连接</strong></p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git remote remove origin
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>本地分支的上游分支（跟踪分支）</strong></p>
+<p>本地仓库和远程仓库连接之后，执行git pull拉取远程分支会报如下的错误</p>
+<p><img src="/23.png" alt="23"></p>
+<p>原因是因为当前分支没有和远程的origin/master分支进行跟踪</p>
+<p>解决1</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git pull origin master
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>解决2</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git branch --set-upstream-to=origin/master
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>

@@ -136,3 +136,23 @@ git remote //查看是否连接成功
 git remote remove origin
 ```
 
+**本地分支的上游分支（跟踪分支）**
+
+本地仓库和远程仓库连接之后，执行git pull拉取远程分支会报如下的错误
+
+![23](/23.png)
+
+原因是因为当前分支没有和远程的origin/master分支进行跟踪
+
+解决1
+
+```
+git pull origin master
+```
+
+解决2
+
+```
+git branch --set-upstream-to=origin/master
+```
+
