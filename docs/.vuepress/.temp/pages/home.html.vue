@@ -128,4 +128,8 @@
 <ul>
 <li><RouterLink to="/%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2.html">vercel</RouterLink></li>
 </ul>
+<h2 id="go" tabindex="-1"><a class="header-anchor" href="#go" aria-hidden="true">#</a> go</h2>
+<ul>
+<li><RouterLink to="/go/go.html">go</RouterLink></li>
+</ul>
 </div></template>
