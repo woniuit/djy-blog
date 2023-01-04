@@ -156,3 +156,12 @@ git pull origin master
 git branch --set-upstream-to=origin/master
 ```
 
+### 远程仓库的交互
+
+```
+git add .
+git commit -m 'XX'
+git pull
+git push
+```
+
