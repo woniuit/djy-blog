@@ -31,6 +31,8 @@ Git是属于分布式版本控制系统
 
 ## git常用的操作
 
+### git配置
+
 ### 获取git仓库
 
 方式一：
@@ -164,4 +166,6 @@ git commit -m 'XX'
 git pull
 git push
 ```
+
+### 分支
 
