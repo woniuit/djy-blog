@@ -8,10 +8,11 @@ export const pagesRoutes = [
   ["v-62483f05","/webpack.html",{"title":"webpack学习笔记"},["/webpack","/webpack.md"]],
   ["v-da6e3782","/%E5%85%AB%E8%82%A1%E6%96%87%E9%9D%A2%E8%AF%95.html",{"title":"VUE体系"},["/八股文面试.html","/%E5%85%AB%E8%82%A1%E6%96%87%E9%9D%A2%E8%AF%95","/八股文面试.md","/%E5%85%AB%E8%82%A1%E6%96%87%E9%9D%A2%E8%AF%95.md"]],
   ["v-19d2ec67","/%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2.html",{"title":"静态部署"},["/静态部署.html","/%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2","/静态部署.md","/%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2.md"]],
-  ["v-acfd2baa","/canvas/canvas%E5%9F%BA%E7%A1%80.html",{"title":"canvas"},["/canvas/canvas基础.html","/canvas/canvas%E5%9F%BA%E7%A1%80","/canvas/canvas基础.md","/canvas/canvas%E5%9F%BA%E7%A1%80.md"]],
   ["v-40393638","/css/css3.html",{"title":"css3"},["/css/css3","/css/css3.md"]],
   ["v-50b6f378","/css/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html",{"title":""},["/css/css学习笔记.html","/css/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0","/css/css学习笔记.md","/css/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md"]],
   ["v-f9b58c64","/css/Grid.html",{"title":""},["/css/Grid","/css/Grid.md"]],
+  ["v-acfd2baa","/canvas/canvas%E5%9F%BA%E7%A1%80.html",{"title":"canvas"},["/canvas/canvas基础.html","/canvas/canvas%E5%9F%BA%E7%A1%80","/canvas/canvas基础.md","/canvas/canvas%E5%9F%BA%E7%A1%80.md"]],
+  ["v-7e6b3683","/go/go.html",{"title":""},["/go/go","/go/go.md"]],
   ["v-7e92875d","/git/git.html",{"title":""},["/git/git","/git/git.md"]],
   ["v-65260ee4","/js/class.html",{"title":"class"},["/js/class","/js/class.md"]],
   ["v-0f769244","/js/dom.html",{"title":"DOM"},["/js/dom","/js/dom.md"]],
@@ -41,5 +42,4 @@ export const pagesRoutes = [
   ["v-ec46784c","/vue/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86.html",{"title":""},["/vue/响应式原理.html","/vue/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86","/vue/响应式原理.md","/vue/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86.md"]],
   ["v-94480d64","/vue/%E8%A1%A8%E5%8D%95%E5%B0%81%E8%A3%85.html",{"title":"vue3+elementplus表单封装"},["/vue/表单封装.html","/vue/%E8%A1%A8%E5%8D%95%E5%B0%81%E8%A3%85","/vue/表单封装.md","/vue/%E8%A1%A8%E5%8D%95%E5%B0%81%E8%A3%85.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
-  ["v-7e6b3683","/go/go.html",{"title":""},["/go/go","/go/go.md"]],
 ]

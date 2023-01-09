@@ -20,6 +20,26 @@
 <li>每一次的克隆操作，实际上都是一次对代码仓库的完整备份</li>
 </ul>
 <h2 id="git常用的操作" tabindex="-1"><a class="header-anchor" href="#git常用的操作" aria-hidden="true">#</a> git常用的操作</h2>
+<h3 id="git配置" tabindex="-1"><a class="header-anchor" href="#git配置" aria-hidden="true">#</a> git配置</h3>
+<p>Git 安装完成后，需配置代码提交人员的名字（昵称）和联系邮箱，配置成功后，之后提交代码修改时，会记录是谁修改了对应的代码，可以更好的管理和 Code Review。</p>
+<p>配置命令如下：</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code># your_name：名字或昵称
+git config --global user.name 'your_name'
+# your_email@domain.com：邮箱地址
+git config --global user.email 'your_email@domain.com'
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>想要查看 <code v-pre>config</code> 的配置，可使用如下命令：</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code># 查看当前仓库 config
+git config --list --local
+# 查看当前用户 config
+git config --list --global
+# 查看当前系统 config
+git config --list --system
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>除了设置 <code v-pre>--global</code>，还可以设置 <code v-pre>--local</code> 和 <code v-pre>--system</code>，这三个都有什么区别呢？</p>
+<ul>
+<li><code v-pre>--local</code>：只对某个仓库有效。</li>
+<li><code v-pre>--global</code>：对当前用户（比如 windows 的 User 环境）所有仓库有效。</li>
+<li><code v-pre>--system</code>：对系统所有登录的用户（比如 windows 的 System 环境）有效，此配置不常用。</li>
+</ul>
 <h3 id="获取git仓库" tabindex="-1"><a class="header-anchor" href="#获取git仓库" aria-hidden="true">#</a> 获取git仓库</h3>
 <p>方式一：</p>
 <div class="language-git ext-git line-numbers-mode"><pre v-pre class="language-git"><code>git init //初始化本地git仓库
@@ -64,4 +84,58 @@ git remote //查看是否连接成功
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git pull origin master
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>解决2</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git branch --set-upstream-to=origin/master
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="远程仓库的交互" tabindex="-1"><a class="header-anchor" href="#远程仓库的交互" aria-hidden="true">#</a> 远程仓库的交互</h3>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git add .
+git commit -m 'XX'
+git pull
+git push
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="tag标签" tabindex="-1"><a class="header-anchor" href="#tag标签" aria-hidden="true">#</a> tag标签</h3>
+<p>对于重大的版本我们常常会打上一个标签，以表示它的重要性：</p>
+<ul>
+<li>
+<p>Git 可以给仓库历史中的某一个提交打上标签；</p>
+</li>
+<li>
+<p>比较有代表性的是人们会使用这个功能来标记发布结点（ v1.0 、 v2.0 等等）；</p>
+</li>
+</ul>
+<p>创建标签</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git tag v1.0 //方式1
+git tag -a v1.0 -m '附属信息' //方式2
+git tag //查看tag
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>把本地的git标签推到远程</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git push origin v1.0
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>删除本地tag</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git tag -d v1.0
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>删除远程tag</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git push origin –delete &lt;tagname>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>检出tag</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git checkout &lt;tagname>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="分支" tabindex="-1"><a class="header-anchor" href="#分支" aria-hidden="true">#</a> 分支</h3>
+<p>创建分支</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git branch 分支名
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>创建分支并切换到新分支</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git checkout -b 分支名
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>切换分支</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git checkout 分支名
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>合并分支</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git merge 合并的分支名
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>查看分支</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git branch //查看分支
+git branch -v //查看分支，并可以看到最后一次提交的commit
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>删除分支</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git branch –d hotfix # 删除当前分支
+git branch –D hotfix # 强制删除某一个分支
+git push origin --delete &lt;branch> //删除远程分支
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>为什么需要用到分支</p>
+<p>让我们来看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。</p>
+<ul>
+<li>开发某个项目，在默认分支master上进行开发；</li>
+<li>实现项目的功能需求，不断提交；</li>
+<li>并且在一个大的版本完成时，发布版本，打上一个tag v1.0.0；</li>
+</ul>
+<p>继续开发后续的新功能，正在此时，你突然接到一个电话说有个很严重的问题需要紧急修补， 你将按照如下方式来处理</p>
+<ul>
+<li>切换到tag v1.0.0的版本，并且创建一个分支hotfix；</li>
+</ul>
+</div></template>
