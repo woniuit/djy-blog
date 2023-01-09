@@ -33,6 +33,34 @@ Git是属于分布式版本控制系统
 
 ### git配置
 
+Git 安装完成后，需配置代码提交人员的名字（昵称）和联系邮箱，配置成功后，之后提交代码修改时，会记录是谁修改了对应的代码，可以更好的管理和 Code Review。
+
+配置命令如下：
+
+```
+# your_name：名字或昵称
+git config --global user.name 'your_name'
+# your_email@domain.com：邮箱地址
+git config --global user.email 'your_email@domain.com'
+```
+
+想要查看 `config` 的配置，可使用如下命令：
+
+```
+# 查看当前仓库 config
+git config --list --local
+# 查看当前用户 config
+git config --list --global
+# 查看当前系统 config
+git config --list --system
+```
+
+除了设置 `--global`，还可以设置 `--local` 和 `--system`，这三个都有什么区别呢？
+
+- `--local`：只对某个仓库有效。
+- `--global`：对当前用户（比如 windows 的 User 环境）所有仓库有效。
+- `--system`：对系统所有登录的用户（比如 windows 的 System 环境）有效，此配置不常用。
+
 ### 获取git仓库
 
 方式一：
