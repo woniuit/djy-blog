@@ -19,6 +19,8 @@ export const pagesData = {
   "v-19d2ec67": () => import(/* webpackChunkName: "v-19d2ec67" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/静态部署.html.js").then(({ data }) => data),
   // path: /canvas/canvas%E5%9F%BA%E7%A1%80.html
   "v-acfd2baa": () => import(/* webpackChunkName: "v-acfd2baa" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/canvas/canvas基础.html.js").then(({ data }) => data),
+  // path: /git/git.html
+  "v-7e92875d": () => import(/* webpackChunkName: "v-7e92875d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/git/git.html.js").then(({ data }) => data),
   // path: /css/css3.html
   "v-40393638": () => import(/* webpackChunkName: "v-40393638" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/css/css3.html.js").then(({ data }) => data),
   // path: /css/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html
@@ -27,8 +29,6 @@ export const pagesData = {
   "v-f9b58c64": () => import(/* webpackChunkName: "v-f9b58c64" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/css/Grid.html.js").then(({ data }) => data),
   // path: /go/go.html
   "v-7e6b3683": () => import(/* webpackChunkName: "v-7e6b3683" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/go/go.html.js").then(({ data }) => data),
-  // path: /git/git.html
-  "v-7e92875d": () => import(/* webpackChunkName: "v-7e92875d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/git/git.html.js").then(({ data }) => data),
   // path: /js/class.html
   "v-65260ee4": () => import(/* webpackChunkName: "v-65260ee4" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/js/class.html.js").then(({ data }) => data),
   // path: /js/dom.html
