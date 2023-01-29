@@ -99,7 +99,7 @@
 <p><RouterLink to="/node/package.json.html">package.json和package-lock.json</RouterLink></p>
 </li>
 <li>
-<p><RouterLink to="/sql/sql.html">mongoDB</RouterLink></p>
+<p><RouterLink to="/sql/sql.html">数据库</RouterLink></p>
 </li>
 </ul>
 <h2 id="git" tabindex="-1"><a class="header-anchor" href="#git" aria-hidden="true">#</a> git~</h2>

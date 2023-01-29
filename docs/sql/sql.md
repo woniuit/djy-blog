@@ -193,6 +193,14 @@ modelName.create({
 - 目前在公司进行后端开发（Node、Java、Go等），还是以关系型数据库为主
 - 比较常用的用到非关系型数据库的，在爬取大量的数据进行存储时，会比较常见；
 
+### 安装
+
+[下载地址](https://dev.mysql.com/downloads/mysql/)
+
+选择```GO to Download Page```下载
+
+
+
 ### Gut工具
 
 Navicat

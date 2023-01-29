@@ -61,7 +61,7 @@
   
 - [package.json和package-lock.json](node/package.json.md)
   
-- [mongoDB](sql/sql.md)
+- [数据库](sql/sql.md)
 
 ## git~
 - [git](git/git.md)

@@ -100,6 +100,9 @@ modelName<span class="token punctuation">.</span><span class="token function">cr
 <li>目前在公司进行后端开发（Node、Java、Go等），还是以关系型数据库为主</li>
 <li>比较常用的用到非关系型数据库的，在爬取大量的数据进行存储时，会比较常见；</li>
 </ul>
+<h3 id="安装" tabindex="-1"><a class="header-anchor" href="#安装" aria-hidden="true">#</a> 安装</h3>
+<p><a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener noreferrer">下载地址<ExternalLinkIcon/></a></p>
+<p>选择<code v-pre>GO to Download Page</code>下载</p>
 <h3 id="gut工具" tabindex="-1"><a class="header-anchor" href="#gut工具" aria-hidden="true">#</a> Gut工具</h3>
 <p>Navicat</p>
 <h3 id="mysql的操作" tabindex="-1"><a class="header-anchor" href="#mysql的操作" aria-hidden="true">#</a> mysql的操作</h3>
