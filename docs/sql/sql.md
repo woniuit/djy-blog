@@ -11,110 +11,110 @@ sidebar: auto
 
 **查看当前数据库列表**
 
-```mysql
+```sql
 show dbs
 ```
 
 **查看当前操作的数据库**
 
-```mysql
+```sql
 db
 ```
 
 **切换数据库（如果没有这个数据库 会 创建数据库）**
 
-```
+```sql
 use 数据库名称
 ```
 
 如果真的想把这个数据库创建成功，那么必须插入一个数据。 数据库中不能直接插入数据，只能往[集合](https://so.csdn.net/so/search?q=集合&spm=1001.2101.3001.7020)(collections)中插入数据。
 下面命令表示给 itying 数据库的 user 表中插入数据。
 
-```mysql
+```sql
 db.user.insert({"name":"xiaoming"});
 ```
 
 **显示当前的数据集合**
 
-```mysql
+```sql
 show collections
 ```
 
 **删除指定的集合 删除表**
 
-```mysql
+```sql
 db.user.drop();
 ```
 
 **删除当前所在的数据库**
 
-```mysql
+```sql
 db.dropDatabase();
 ```
 
 **插入（增加）数据**
 
-```mysql
+```sql
 db.表名.insert({"name":"zhangsan"，"age":20});
 ```
 
 **查询所有记录**
 
-```mysql
+```sql
 db.user.find();
 ```
 
 **查询 age = 22 的记录**
 
-```mysql
+```sql
 db.user.find({"age": 22});
 ```
 
 **查询 age > 22 的记录**
 
-```mysql
+```sql
 db.user.find({"age": {$gt: 22}});
 ```
 
 **查询 age < 22 的记录**
 
-```mysql
+```sql
 db.user.find({"age": {$lt: 22}});
 ```
 
 **查询 age >= 25 的记录**
 
-```mysql
+```sql
 db.user.find({"age": {$gte: 25}});
 ```
 
 **查询 age <= 25 的记录**
 
-```mysql
+```sql
 db.user.find({"age": {$lte: 25}});
 ```
 
 **查询 age >= 23 并且 age <= 26**
 
-```mysql
+```sql
 db.user.find({"age": {$gte: 23, $lte: 26}});
 ```
 
 **查询 name 中包含 mongo 的数据 模糊查询用于搜索**
 
-```mysql
+```sql
 db.user.find({"name": /mongo/});
 ```
 
 **查询 name 中以 mongo 开头的**
 
-```mysql
+```sql
 db.user.find({"name": /^mongo/});
 ```
 
 **查询 name 中以 mongo 结尾的**
 
-```mysql
+```sql
 db.user.find({"name": /mongo$/});
 ```
 
@@ -245,7 +245,7 @@ modelName.create({
 
 查看当前数据库：
 
-```mysql
+```sql
 # 查看所有的数据
 SHOW DATABASES;
 # 使用某一个数据
@@ -256,14 +256,14 @@ SELECT DATABASE();
 
 创建新的数据库：
 
-```mysql
+```sql
 CREATE DATABASE IF NOT EXISTS bilibili
 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 ```
 
 删除数据库：
 
-```mysql
+```sql
 # 删除数据库
 DROP DATABASE bilibili;
 DROP DATABASE IF EXIT bilibili;
@@ -271,7 +271,7 @@ DROP DATABASE IF EXIT bilibili;
 
 修改数据库：
 
-```mysql
+```sql
 # 修改数据库的字符集和排序规则
 ALTER DATABASE bilibili CHARACTER SET = utf8 COLLATE = utf8_unicode_ci;
 ```
@@ -280,7 +280,7 @@ ALTER DATABASE bilibili CHARACTER SET = utf8 COLLATE = utf8_unicode_ci;
 
 查看数据表
 
-```mysql
+```sql
 # 查看所有的数据表
 SHOW TABLES;
 # 查看某一个表结构
@@ -289,7 +289,7 @@ DESC user
 
 创建数据表
 
-```mysql
+```sql
 CREATE TABLE IF NOT EXISTS `users`(
 name VARCHAR(20),
 age INT,
@@ -299,7 +299,7 @@ height DOUBLE
 
 删除数据表
 
-```mysql
+```sql
 # 删除数据库
 DROP TABLE users;
 DROP TABLE IF EXISTS users;
@@ -307,7 +307,7 @@ DROP TABLE IF EXISTS users;
 
 修改表
 
-```mysql
+```sql
 # 1.修改表名
 ALTER TABLE `moments` RENAME TO `moment`;
 # 2.添加一个新的列
@@ -323,7 +323,7 @@ ALTER TABLE `moment` MODIFY `id` INT
 
 插入数据
 
-```mysql
+```sql
 INSERT INTO `products` (`title`, `description`, `price`, `publishTime`) 
 VALUES ('iPhone', 'iPhone12只要998', 998.88, '2020-10-10'); 
 INSERT INTO `products` (`title`, `description`, `price`, `publishTime`) 
@@ -332,7 +332,7 @@ VALUES ('huawei', 'iPhoneP40只要888', 888.88, '2020-11-11');
 
 删除数据
 
-```mysql
+```sql
 # 删除数据
 # 会删除表中所有的数据
 DELETE FROM `products`;
@@ -342,7 +342,7 @@ DELETE FROM `products` WHERE `title` = 'iPhone';
 
 修改数据
 
-```mysql
+```sql
 # 修改数据
 # 会修改表中所有的数据
 UPDATE `products` SET `title` = 'iPhone12', `price` = 1299.88;
@@ -352,7 +352,7 @@ UPDATE `products` SET `title` = 'iPhone12', `price` = 1299.88 WHERE `title` = 'i
 
 如果我们希望修改完数据后，直接可以显示最新的更新时间：
 
-```mysql
+```sql
 ALTER TABLE `products` ADD `updateTime` TIMESTAMP 
 DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 ```
@@ -363,20 +363,20 @@ DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
 查询所有的数据并且显示所有的字段：
 
-```
+```sql
 SELECT * FROM `products`;
 ```
 
 查询指定字段
 
-```
+```sql
 SELECT 字段1,字段2
 SELECT title, brand, price FROM `products`;
 ```
 
 我们也可以给字段起别名： 别名一般在多张表或者给客户端返回对应的key时会使用到
 
-```
+```sql
 SELECT title as t, brand as b, price as p FROM `products`;
 ```
 
@@ -386,7 +386,7 @@ SELECT title as t, brand as b, price as p FROM `products`;
 
 **WHERE的比较运算符**
 
-```
+```sql
 # 查询价格小于1000的手机
 SELECT * FROM `products` WHERE price < 1000;
 # 查询价格大于等于2000的手机
@@ -401,7 +401,7 @@ SELECT * FROM `products` WHERE `brand` = '华为';
 
 **WHERE的逻辑运算符**
 
-```
+```sql
 # 查询品牌是华为，并且小于2000元的手机
 SELECT * FROM `products` WHERE `brand` = '华为' and `price` < 2000;
 SELECT * FROM `products` WHERE `brand` = '华为' && `price` < 2000;
@@ -422,7 +422,7 @@ SELECT * FROM `products` WHERE brand in ('华为', '小米')
 
  _表示匹配一个的任意字符
 
-```
+```sql
 # 查询所有以v开头的title
 SELECT * FROM `products` WHERE title LIKE 'v%';
 # 查询带M的title
@@ -441,7 +441,7 @@ ASC：升序排列；
 
 DESC：降序排列；
 
-```
+```sql
 SELECT * FROM `products` WHERE brand = '华为' or price < 1000 ORDER BY price ASC;
 ```
 
@@ -455,7 +455,7 @@ SELECT * FROM `products` WHERE brand = '华为' or price < 1000 ORDER BY price A
 
 它的用法有[LIMIT {[offset,] row_count | row_count OFFSET offset}]
 
-```
+```sql
 SELECT * FROM `products` LIMIT 30 OFFSET 0;
 SELECT * FROM `products` LIMIT 30 OFFSET 30;
 SELECT * FROM `products` LIMIT 30 OFFSET 60;
@@ -471,7 +471,7 @@ SELECT * FROM `products` LIMIT 90, 30
 
 创建一张新的表
 
-```mysql
+```sql
 CREATE TABLE IF NOT EXISTS `products` (
 id INT PRIMARY KEY AUTO_INCREMENT,
 brand VARCHAR(20),
@@ -1492,7 +1492,7 @@ for (let phone of phoneJson) {
 
 聚合函数表示对 值的集合 进行操作的 组（集合）函数。
 
-```
+```sql
 # 华为手机价格的平均值
 SELECT AVG(price) FROM `products` WHERE brand = '华为';
 # 计算所有手机的平均分
@@ -1508,7 +1508,144 @@ SELECT COUNT(*) FROM `products`;
 SELECT COUNT(*) FROM `products` WHERE brand = '华为';
 ```
 
+### Group By
 
+#### 认识Group By
+
+**事实上聚合函数相当于默认将所有的数据分成了一组：**
+
+我们前面使用avg还是max等，都是将所有的结果看成一组来计算的；
+
+那么如果我们希望划分多个组：比如华为、苹果、小米等手机分别的平均价格，应该怎么来做呢？
+
+这个时候我们可以使用 GROUP BY；
+
+**GROUP BY通常和聚合函数一起使用：**
+
+表示我们先对数据进行分组，再对每一组数据，进行聚合函数的计算；
+
+**我们现在来提一个需求：**
+
+根据品牌进行分组；
+
+计算各个品牌中：商品的个数、平均价格；
+
+也包括：最高价格、最低价格、平均评分；
+
+```sql
+SELECT brand, 
+COUNT(*) as count, 
+ROUND(AVG(price),2) as avgPrice,
+MAX(price) as maxPrice,
+MIN(price) as minPrice,
+AVG(score) as avgScore
+FROM `products` GROUP BY brand;
+```
+
+#### Group By的约束条件
+
+如果我们希望给Group By查询到的结果添加一些约束，那么我们可以使用：```HAVING```。
+
+比如：如果我们还希望筛选出平均价格在4000以下，并且平均分在7以上的品牌：
+
+```sql
+SELECT brand, 
+COUNT(*) as count, 
+ROUND(AVG(price),2) as avgPrice,
+MAX(price) as maxPrice,
+MIN(price) as minPrice,
+AVG(score) as avgScore
+FROM `products` GROUP BY brand 
+HAVING avgPrice < 4000 and avgScore > 7;
+```
+
+### 创建多张表
+
+假如我们的上面的商品表中，对应的品牌还需要包含其他的信息：
+
+比如品牌的官网，品牌的世界排名，品牌的市值等等；
+
+如果我们直接在商品中去体现品牌相关的信息，会存在一些问题：
+
+一方面，products表中应该表示的都是商品相关的数据，应该又另外一张表来表示brand的数据；
+
+另一方面，多个商品使用的品牌是一致时，会存在大量的冗余数据；
+
+所以，我们可以将所有的品牌数据，单独放到一张表中，创建一张品牌的表
+
+```sql
+CREATE TABLE IF NOT EXISTS `brand`(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(20) NOT NULL,
+website VARCHAR(100),
+worldRank INT
+);
+```
+
+插入模拟数据
+
+```sql
+INSERT INTO `brand` (name, website, worldRank) VALUES ('华为', 'www.huawei.com', 1);
+INSERT INTO `brand` (name, website, worldRank) VALUES ('小米', 'www.mi.com', 10);
+INSERT INTO `brand` (name, website, worldRank) VALUES ('苹果', 'www.apple.com', 5);
+INSERT INTO `brand` (name, website, worldRank) VALUES ('oppo', 'www.oppo.com', 15);
+INSERT INTO `brand` (name, website, worldRank) VALUES ('京东', 'www.jd.com', 3);
+INSERT INTO `brand` (name, website, worldRank) VALUES ('Google', 'www.google.com', 8);
+```
+
+#### 创建外键
+
+将两张表联系起来，我们可以将products中的brand_id关联到brand中的id：
+
+如果是创建表添加外键约束，我们需要在创建表的()最后添加如下语句；
+
+```sql
+FOREIGN KEY (brand_id) REFERENCES brand(id)
+```
+
+如果是表已经创建好，额外添加外键：
+
+```sql
+ALTER TABLE `products` ADD `brand_id` INT;
+ALTER TABLE `products` ADD FOREIGN KEY (brand_id) REFERENCES brand(id);
+```
+
+现在我们可以将products中的brand_id关联到brand中的id的值：
+
+```sql
+UPDATE `products` SET `brand_id` = 1 WHERE `brand` = '华为';
+UPDATE `products` SET `brand_id` = 4 WHERE `brand` = 'OPPO';
+UPDATE `products` SET `brand_id` = 3 WHERE `brand` = '苹果';
+UPDATE `products` SET `brand_id` = 2 WHERE `brand` = '小米';
+```
+
+#### 外键存在时更新和删除数据
+
+先找到外键名
+
+```sql
+SHOW CREATE TABLE `products`;
+```
+
+删除外键
+
+```sql
+ALTER TABLE `products` DROP FOREIGN KEY products_ibfk_1; //外键名products_ibfk_1
+```
+
+重新设置
+
+```sql
+ALTER TABLE `products` ADD FOREIGN KEY (brand_id) REFERENCES brand(id) 
+ON UPDATE CASCADE 
+ON DELETE CASCADE;
+```
+
+**CASCADE**：当更新或删除某个记录时，会检查该记录是否有关联的外键记录，有的话： 
+
+✓ 更新：那么会更新对应的记录； ✓ 删除：那么关联的记录会被一起删除掉；
+
+### 多表查询
 
 
 

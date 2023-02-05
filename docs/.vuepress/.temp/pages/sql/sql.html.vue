@@ -3,42 +3,42 @@
 <p><strong><a href="https://yangyongli.blog.csdn.net/article/details/113917773?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-113917773-blog-114709588.t5_layer_eslanding_A_4&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-113917773-blog-114709588.t5_layer_eslanding_A_4&amp;utm_relevant_index=2" target="_blank" rel="noopener noreferrer">安装<ExternalLinkIcon/></a></strong></p>
 <h3 id="常用的语句" tabindex="-1"><a class="header-anchor" href="#常用的语句" aria-hidden="true">#</a> <strong>常用的语句</strong></h3>
 <p><strong>查看当前数据库列表</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>show dbs
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">show</span> dbs
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查看当前操作的数据库</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>切换数据库（如果没有这个数据库 会 创建数据库）</strong></p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>use 数据库名称
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">use</span> 数据库名称
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>如果真的想把这个数据库创建成功，那么必须插入一个数据。 数据库中不能直接插入数据，只能往<a href="https://so.csdn.net/so/search?q=%E9%9B%86%E5%90%88&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">集合<ExternalLinkIcon/></a>(collections)中插入数据。
 下面命令表示给 itying 数据库的 user 表中插入数据。</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.insert({&quot;name&quot;:&quot;xiaoming&quot;});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span><span class="token keyword">insert</span><span class="token punctuation">(</span>{<span class="token string">"name"</span>:<span class="token string">"xiaoming"</span>}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>显示当前的数据集合</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>show collections
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">show</span> collections
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>删除指定的集合 删除表</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.drop();
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span><span class="token keyword">drop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>删除当前所在的数据库</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.dropDatabase();
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span>dropDatabase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>插入（增加）数据</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.表名.insert({&quot;name&quot;:&quot;zhangsan&quot;，&quot;age&quot;:20});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span>表名<span class="token punctuation">.</span><span class="token keyword">insert</span><span class="token punctuation">(</span>{<span class="token string">"name"</span>:<span class="token string">"zhangsan"</span>，<span class="token string">"age"</span>:<span class="token number">20</span>}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询所有记录</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find();
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 age = 22 的记录</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;age&quot;: 22});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"age"</span>: <span class="token number">22</span>}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 age &gt; 22 的记录</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;age&quot;: {$gt: 22}});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"age"</span>: {$gt: <span class="token number">22</span>}}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 age &lt; 22 的记录</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;age&quot;: {$lt: 22}});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"age"</span>: {$lt: <span class="token number">22</span>}}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 age &gt;= 25 的记录</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;age&quot;: {$gte: 25}});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"age"</span>: {$gte: <span class="token number">25</span>}}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 age &lt;= 25 的记录</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;age&quot;: {$lte: 25}});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"age"</span>: {$lte: <span class="token number">25</span>}}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 age &gt;= 23 并且 age &lt;= 26</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;age&quot;: {$gte: 23, $lte: 26}});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"age"</span>: {$gte: <span class="token number">23</span><span class="token punctuation">,</span> $lte: <span class="token number">26</span>}}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 name 中包含 mongo 的数据 模糊查询用于搜索</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;name&quot;: /mongo/});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"name"</span>: <span class="token operator">/</span>mongo<span class="token operator">/</span>}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 name 中以 mongo 开头的</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;name&quot;: /^mongo/});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"name"</span>: <span class="token operator">/</span><span class="token operator">^</span>mongo<span class="token operator">/</span>}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>查询 name 中以 mongo 结尾的</strong></p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>db.user.find({&quot;name&quot;: /mongo$/});
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code>db<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>{<span class="token string">"name"</span>: <span class="token operator">/</span>mongo$<span class="token operator">/</span>}<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><a href="https://blog.csdn.net/ZYS10000/article/details/116425819" target="_blank" rel="noopener noreferrer">更多语句<ExternalLinkIcon/></a></p>
 <h3 id="mongoose" tabindex="-1"><a class="header-anchor" href="#mongoose" aria-hidden="true">#</a> mongoose</h3>
 <p><strong>安装</strong></p>
@@ -132,143 +132,143 @@ modelName<span class="token punctuation">.</span><span class="token function">cr
 <p>点击新建连接，创建连接，然后点击查询，新建查询就可以操作sql语句。</p>
 <h3 id="数据库的操作" tabindex="-1"><a class="header-anchor" href="#数据库的操作" aria-hidden="true">#</a> 数据库的操作</h3>
 <p>查看当前数据库：</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code># 查看所有的数据
-SHOW DATABASES;
-# 使用某一个数据
-USE coderhub;
-# 查看当前正在使用的数据库
-SELECT DATABASE();
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 查看所有的数据</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">DATABASES</span><span class="token punctuation">;</span>
+<span class="token comment"># 使用某一个数据</span>
+<span class="token keyword">USE</span> coderhub<span class="token punctuation">;</span>
+<span class="token comment"># 查看当前正在使用的数据库</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>创建新的数据库：</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>CREATE DATABASE IF NOT EXISTS bilibili
-DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> bilibili
+<span class="token keyword">DEFAULT</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_0900_ai_ci<span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>删除数据库：</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code># 删除数据库
-DROP DATABASE bilibili;
-DROP DATABASE IF EXIT bilibili;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 删除数据库</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> bilibili<span class="token punctuation">;</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXIT</span> bilibili<span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>修改数据库：</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code># 修改数据库的字符集和排序规则
-ALTER DATABASE bilibili CHARACTER SET = utf8 COLLATE = utf8_unicode_ci;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 修改数据库的字符集和排序规则</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> bilibili <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> <span class="token operator">=</span> utf8 <span class="token keyword">COLLATE</span> <span class="token operator">=</span> utf8_unicode_ci<span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="数据表的操作" tabindex="-1"><a class="header-anchor" href="#数据表的操作" aria-hidden="true">#</a> 数据表的操作</h3>
 <p>查看数据表</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code># 查看所有的数据表
-SHOW TABLES;
-# 查看某一个表结构
-DESC user
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 查看所有的数据表</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">TABLES</span><span class="token punctuation">;</span>
+<span class="token comment"># 查看某一个表结构</span>
+<span class="token keyword">DESC</span> <span class="token keyword">user</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>创建数据表</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>CREATE TABLE IF NOT EXISTS `users`(
-name VARCHAR(20),
-age INT,
-height DOUBLE
-);
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token identifier"><span class="token punctuation">`</span>users<span class="token punctuation">`</span></span><span class="token punctuation">(</span>
+name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+age <span class="token keyword">INT</span><span class="token punctuation">,</span>
+height <span class="token keyword">DOUBLE</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>删除数据表</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code># 删除数据库
-DROP TABLE users;
-DROP TABLE IF EXISTS users;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 删除数据库</span>
+<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> users<span class="token punctuation">;</span>
+<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> users<span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>修改表</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code># 1.修改表名
-ALTER TABLE `moments` RENAME TO `moment`;
-# 2.添加一个新的列
-ALTER TABLE `moment` ADD `publishTime` DATETIME;
-ALTER TABLE `moment` ADD `updateTime` DATETIME;
-# 3.删除一列数据
-ALTER TABLE `moment` DROP `updateTime`;
-# 4.修改列的名称
-ALTER TABLE `moment` CHANGE `publishTime` `publishDate` DATE;
-# 5.修改列的数据类型
-ALTER TABLE `moment` MODIFY `id` INT
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 1.修改表名</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>moments<span class="token punctuation">`</span></span> <span class="token keyword">RENAME</span> <span class="token keyword">TO</span> <span class="token identifier"><span class="token punctuation">`</span>moment<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+<span class="token comment"># 2.添加一个新的列</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>moment<span class="token punctuation">`</span></span> <span class="token keyword">ADD</span> <span class="token identifier"><span class="token punctuation">`</span>publishTime<span class="token punctuation">`</span></span> <span class="token keyword">DATETIME</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>moment<span class="token punctuation">`</span></span> <span class="token keyword">ADD</span> <span class="token identifier"><span class="token punctuation">`</span>updateTime<span class="token punctuation">`</span></span> <span class="token keyword">DATETIME</span><span class="token punctuation">;</span>
+<span class="token comment"># 3.删除一列数据</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>moment<span class="token punctuation">`</span></span> <span class="token keyword">DROP</span> <span class="token identifier"><span class="token punctuation">`</span>updateTime<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+<span class="token comment"># 4.修改列的名称</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>moment<span class="token punctuation">`</span></span> CHANGE <span class="token identifier"><span class="token punctuation">`</span>publishTime<span class="token punctuation">`</span></span> <span class="token identifier"><span class="token punctuation">`</span>publishDate<span class="token punctuation">`</span></span> <span class="token keyword">DATE</span><span class="token punctuation">;</span>
+<span class="token comment"># 5.修改列的数据类型</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>moment<span class="token punctuation">`</span></span> <span class="token keyword">MODIFY</span> <span class="token identifier"><span class="token punctuation">`</span>id<span class="token punctuation">`</span></span> <span class="token keyword">INT</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>插入数据</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>INSERT INTO `products` (`title`, `description`, `price`, `publishTime`) 
-VALUES ('iPhone', 'iPhone12只要998', 998.88, '2020-10-10'); 
-INSERT INTO `products` (`title`, `description`, `price`, `publishTime`) 
-VALUES ('huawei', 'iPhoneP40只要888', 888.88, '2020-11-11');
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token punctuation">(</span><span class="token identifier"><span class="token punctuation">`</span>title<span class="token punctuation">`</span></span><span class="token punctuation">,</span> <span class="token identifier"><span class="token punctuation">`</span>description<span class="token punctuation">`</span></span><span class="token punctuation">,</span> <span class="token identifier"><span class="token punctuation">`</span>price<span class="token punctuation">`</span></span><span class="token punctuation">,</span> <span class="token identifier"><span class="token punctuation">`</span>publishTime<span class="token punctuation">`</span></span><span class="token punctuation">)</span> 
+<span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'iPhone'</span><span class="token punctuation">,</span> <span class="token string">'iPhone12只要998'</span><span class="token punctuation">,</span> <span class="token number">998.88</span><span class="token punctuation">,</span> <span class="token string">'2020-10-10'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token punctuation">(</span><span class="token identifier"><span class="token punctuation">`</span>title<span class="token punctuation">`</span></span><span class="token punctuation">,</span> <span class="token identifier"><span class="token punctuation">`</span>description<span class="token punctuation">`</span></span><span class="token punctuation">,</span> <span class="token identifier"><span class="token punctuation">`</span>price<span class="token punctuation">`</span></span><span class="token punctuation">,</span> <span class="token identifier"><span class="token punctuation">`</span>publishTime<span class="token punctuation">`</span></span><span class="token punctuation">)</span> 
+<span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'huawei'</span><span class="token punctuation">,</span> <span class="token string">'iPhoneP40只要888'</span><span class="token punctuation">,</span> <span class="token number">888.88</span><span class="token punctuation">,</span> <span class="token string">'2020-11-11'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>删除数据</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code># 删除数据
-# 会删除表中所有的数据
-DELETE FROM `products`;
-# 会删除符合条件的数据
-DELETE FROM `products` WHERE `title` = 'iPhone';
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 删除数据</span>
+<span class="token comment"># 会删除表中所有的数据</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+<span class="token comment"># 会删除符合条件的数据</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>title<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'iPhone'</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>修改数据</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code># 修改数据
-# 会修改表中所有的数据
-UPDATE `products` SET `title` = 'iPhone12', `price` = 1299.88;
-# 会修改符合条件的数据
-UPDATE `products` SET `title` = 'iPhone12', `price` = 1299.88 WHERE `title` = 'iPhone';
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 修改数据</span>
+<span class="token comment"># 会修改表中所有的数据</span>
+<span class="token keyword">UPDATE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">SET</span> <span class="token identifier"><span class="token punctuation">`</span>title<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'iPhone12'</span><span class="token punctuation">,</span> <span class="token identifier"><span class="token punctuation">`</span>price<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token number">1299.88</span><span class="token punctuation">;</span>
+<span class="token comment"># 会修改符合条件的数据</span>
+<span class="token keyword">UPDATE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">SET</span> <span class="token identifier"><span class="token punctuation">`</span>title<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'iPhone12'</span><span class="token punctuation">,</span> <span class="token identifier"><span class="token punctuation">`</span>price<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token number">1299.88</span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>title<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'iPhone'</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>如果我们希望修改完数据后，直接可以显示最新的更新时间：</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>ALTER TABLE `products` ADD `updateTime` TIMESTAMP 
-DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">ADD</span> <span class="token identifier"><span class="token punctuation">`</span>updateTime<span class="token punctuation">`</span></span> <span class="token keyword">TIMESTAMP</span> 
+<span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="数据查询" tabindex="-1"><a class="header-anchor" href="#数据查询" aria-hidden="true">#</a> 数据查询</h3>
 <p>结合下面代码连接数据库操作</p>
 <p>查询所有的数据并且显示所有的字段：</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>SELECT * FROM `products`;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>查询指定字段</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>SELECT 字段1,字段2
-SELECT title, brand, price FROM `products`;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> 字段<span class="token number">1</span><span class="token punctuation">,</span>字段<span class="token number">2</span>
+<span class="token keyword">SELECT</span> title<span class="token punctuation">,</span> brand<span class="token punctuation">,</span> price <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>我们也可以给字段起别名： 别名一般在多张表或者给客户端返回对应的key时会使用到</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>SELECT title as t, brand as b, price as p FROM `products`;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> title <span class="token keyword">as</span> t<span class="token punctuation">,</span> brand <span class="token keyword">as</span> b<span class="token punctuation">,</span> price <span class="token keyword">as</span> p <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4 id="条件查询" tabindex="-1"><a class="header-anchor" href="#条件查询" aria-hidden="true">#</a> <strong>条件查询</strong></h4>
 <p>条件查询会使用 WEHRE查询子句</p>
 <p><strong>WHERE的比较运算符</strong></p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code># 查询价格小于1000的手机
-SELECT * FROM `products` WHERE price &lt; 1000;
-# 查询价格大于等于2000的手机
-SELECT * FROM `products` WHERE price >= 2000;
-# 价格等于3399的手机
-SELECT * FROM `products` WHERE price = 3399;
-# 价格不等于3399的手机
-SELECT * FROM `products` WHERE price != 3399;
-# 查询华为品牌的手机
-SELECT * FROM `products` WHERE `brand` = '华为';
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 查询价格小于1000的手机</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> price <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+<span class="token comment"># 查询价格大于等于2000的手机</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> price <span class="token operator">>=</span> <span class="token number">2000</span><span class="token punctuation">;</span>
+<span class="token comment"># 价格等于3399的手机</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> price <span class="token operator">=</span> <span class="token number">3399</span><span class="token punctuation">;</span>
+<span class="token comment"># 价格不等于3399的手机</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> price <span class="token operator">!=</span> <span class="token number">3399</span><span class="token punctuation">;</span>
+<span class="token comment"># 查询华为品牌的手机</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'华为'</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>WHERE的逻辑运算符</strong></p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code># 查询品牌是华为，并且小于2000元的手机
-SELECT * FROM `products` WHERE `brand` = '华为' and `price` &lt; 2000;
-SELECT * FROM `products` WHERE `brand` = '华为' &amp;&amp; `price` &lt; 2000;
-# 查询1000到2000的手机（不包含1000和2000）
-SELECT * FROM `products` WHERE price > 1000 and price &lt; 2000;
-# OR: 符合一个条件即可
-# 查询所有的华为手机或者价格小于1000的手机
-SELECT * FROM `products` WHERE brand = '华为' or price &lt; 1000;
-# 查询1000到2000的手机（包含1000和2000）
-SELECT * FROM `products` WHERE price BETWEEN 1000 and 2000;
-# 查看多个结果中的一个
-SELECT * FROM `products` WHERE brand in ('华为', '小米')
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 查询品牌是华为，并且小于2000元的手机</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'华为'</span> <span class="token operator">and</span> <span class="token identifier"><span class="token punctuation">`</span>price<span class="token punctuation">`</span></span> <span class="token operator">&lt;</span> <span class="token number">2000</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'华为'</span> <span class="token operator">&amp;&amp;</span> <span class="token identifier"><span class="token punctuation">`</span>price<span class="token punctuation">`</span></span> <span class="token operator">&lt;</span> <span class="token number">2000</span><span class="token punctuation">;</span>
+<span class="token comment"># 查询1000到2000的手机（不包含1000和2000）</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> price <span class="token operator">></span> <span class="token number">1000</span> <span class="token operator">and</span> price <span class="token operator">&lt;</span> <span class="token number">2000</span><span class="token punctuation">;</span>
+<span class="token comment"># OR: 符合一个条件即可</span>
+<span class="token comment"># 查询所有的华为手机或者价格小于1000的手机</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> brand <span class="token operator">=</span> <span class="token string">'华为'</span> <span class="token operator">or</span> price <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+<span class="token comment"># 查询1000到2000的手机（包含1000和2000）</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> price <span class="token operator">BETWEEN</span> <span class="token number">1000</span> <span class="token operator">and</span> <span class="token number">2000</span><span class="token punctuation">;</span>
+<span class="token comment"># 查看多个结果中的一个</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> brand <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'华为'</span><span class="token punctuation">,</span> <span class="token string">'小米'</span><span class="token punctuation">)</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>模糊查询</strong>使用LIKE关键字，结合两个特殊的符号：</p>
 <p>%表示匹配任意个的任意字符；</p>
 <p>_表示匹配一个的任意字符</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code># 查询所有以v开头的title
-SELECT * FROM `products` WHERE title LIKE 'v%';
-# 查询带M的title
-SELECT * FROM `products` WHERE title LIKE '%M%';
-# 查询带M的title必须是第三个字符
-SELECT * FROM `products` WHERE title LIKE '__M%';
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 查询所有以v开头的title</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> title <span class="token operator">LIKE</span> <span class="token string">'v%'</span><span class="token punctuation">;</span>
+<span class="token comment"># 查询带M的title</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> title <span class="token operator">LIKE</span> <span class="token string">'%M%'</span><span class="token punctuation">;</span>
+<span class="token comment"># 查询带M的title必须是第三个字符</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> title <span class="token operator">LIKE</span> <span class="token string">'__M%'</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="查询结果排序" tabindex="-1"><a class="header-anchor" href="#查询结果排序" aria-hidden="true">#</a> 查询结果排序</h4>
 <p>当我们查询到结果的时候，我们希望讲结果按照某种方式进行排序，这个时候使用的是ORDER BY</p>
 <p>ORDER BY有两个常用的值：</p>
 <p>ASC：升序排列；</p>
 <p>DESC：降序排列；</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>SELECT * FROM `products` WHERE brand = '华为' or price &lt; 1000 ORDER BY price ASC;
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> brand <span class="token operator">=</span> <span class="token string">'华为'</span> <span class="token operator">or</span> price <span class="token operator">&lt;</span> <span class="token number">1000</span> <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> price <span class="token keyword">ASC</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4 id="分页查询" tabindex="-1"><a class="header-anchor" href="#分页查询" aria-hidden="true">#</a> 分页查询</h4>
 <p>当数据库中的数据非常多时，一次性查询到所有的结果进行显示是不太现实的：</p>
 <p>在真实开发中，我们都会要求用户传入offset、limit或者page等字段；</p>
 <p>它们的目的是让我们可以在数据库中进行分页查询；</p>
 <p>它的用法有[LIMIT {[offset,] row_count | row_count OFFSET offset}]</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>SELECT * FROM `products` LIMIT 30 OFFSET 0;
-SELECT * FROM `products` LIMIT 30 OFFSET 30;
-SELECT * FROM `products` LIMIT 30 OFFSET 60;
-# 另外一种写法：offset, row_count
-SELECT * FROM `products` LIMIT 90, 30
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">LIMIT</span> <span class="token number">30</span> <span class="token keyword">OFFSET</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">LIMIT</span> <span class="token number">30</span> <span class="token keyword">OFFSET</span> <span class="token number">30</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">LIMIT</span> <span class="token number">30</span> <span class="token keyword">OFFSET</span> <span class="token number">60</span><span class="token punctuation">;</span>
+<span class="token comment"># 另外一种写法：offset, row_count</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">LIMIT</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">30</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="代码连接数据库" tabindex="-1"><a class="header-anchor" href="#代码连接数据库" aria-hidden="true">#</a> 代码连接数据库</h3>
 <p>创建一个mysql文件夹，<code v-pre>npm init -y</code>,然后<code v-pre>npm install mysql2</code></p>
 <p>创建一张新的表</p>
-<div class="language-mysql ext-mysql line-numbers-mode"><pre v-pre class="language-mysql"><code>CREATE TABLE IF NOT EXISTS `products` (
-id INT PRIMARY KEY AUTO_INCREMENT,
-brand VARCHAR(20),
-title VARCHAR(100) NOT NULL,
-price DOUBLE NOT NULL,
-score DECIMAL(2,1),
-voteCnt INT,
-url VARCHAR(100),
-pid INT
-);
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token punctuation">(</span>
+id <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+brand <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+title <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+price <span class="token keyword">DOUBLE</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+score <span class="token keyword">DECIMAL</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+voteCnt <span class="token keyword">INT</span><span class="token punctuation">,</span>
+url <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+pid <span class="token keyword">INT</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>创建一个<code v-pre>phone.json</code>文件，数据如下</p>
 <div class="language-json ext-json line-numbers-mode"><pre v-pre class="language-json"><code><span class="token punctuation">[</span>
   <span class="token punctuation">{</span>
@@ -1264,17 +1264,91 @@ pid INT
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后执行<code v-pre>node index.js</code>，去刷新数据库中对应的表就可以看到数据添加成功</p>
 <h3 id="聚合函数" tabindex="-1"><a class="header-anchor" href="#聚合函数" aria-hidden="true">#</a> 聚合函数</h3>
 <p>聚合函数表示对 值的集合 进行操作的 组（集合）函数。</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code># 华为手机价格的平均值
-SELECT AVG(price) FROM `products` WHERE brand = '华为';
-# 计算所有手机的平均分
-SELECT AVG(score) FROM `products`;
-# 手机中最低和最高分数
-SELECT MAX(score) FROM `products`;
-SELECT MIN(score) FROM `products`;
-# 计算总投票人数
-SELECT SUM(voteCnt) FROM `products`;
-# 计算所有条目的数量
-SELECT COUNT(*) FROM `products`;
-# 华为手机的个数
-SELECT COUNT(*) FROM `products` WHERE brand = '华为';
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token comment"># 华为手机价格的平均值</span>
+<span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> brand <span class="token operator">=</span> <span class="token string">'华为'</span><span class="token punctuation">;</span>
+<span class="token comment"># 计算所有手机的平均分</span>
+<span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>score<span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+<span class="token comment"># 手机中最低和最高分数</span>
+<span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>score<span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>score<span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+<span class="token comment"># 计算总投票人数</span>
+<span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>voteCnt<span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+<span class="token comment"># 计算所有条目的数量</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+<span class="token comment"># 华为手机的个数</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">WHERE</span> brand <span class="token operator">=</span> <span class="token string">'华为'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="group-by" tabindex="-1"><a class="header-anchor" href="#group-by" aria-hidden="true">#</a> Group By</h3>
+<h4 id="认识group-by" tabindex="-1"><a class="header-anchor" href="#认识group-by" aria-hidden="true">#</a> 认识Group By</h4>
+<p><strong>事实上聚合函数相当于默认将所有的数据分成了一组：</strong></p>
+<p>我们前面使用avg还是max等，都是将所有的结果看成一组来计算的；</p>
+<p>那么如果我们希望划分多个组：比如华为、苹果、小米等手机分别的平均价格，应该怎么来做呢？</p>
+<p>这个时候我们可以使用 GROUP BY；</p>
+<p><strong>GROUP BY通常和聚合函数一起使用：</strong></p>
+<p>表示我们先对数据进行分组，再对每一组数据，进行聚合函数的计算；</p>
+<p><strong>我们现在来提一个需求：</strong></p>
+<p>根据品牌进行分组；</p>
+<p>计算各个品牌中：商品的个数、平均价格；</p>
+<p>也包括：最高价格、最低价格、平均评分；</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> brand<span class="token punctuation">,</span> 
+<span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">as</span> count<span class="token punctuation">,</span> 
+<span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token function">AVG</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">as</span> avgPrice<span class="token punctuation">,</span>
+<span class="token function">MAX</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span> <span class="token keyword">as</span> maxPrice<span class="token punctuation">,</span>
+<span class="token function">MIN</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span> <span class="token keyword">as</span> minPrice<span class="token punctuation">,</span>
+<span class="token function">AVG</span><span class="token punctuation">(</span>score<span class="token punctuation">)</span> <span class="token keyword">as</span> avgScore
+<span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> brand<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="group-by的约束条件" tabindex="-1"><a class="header-anchor" href="#group-by的约束条件" aria-hidden="true">#</a> Group By的约束条件</h4>
+<p>如果我们希望给Group By查询到的结果添加一些约束，那么我们可以使用：<code v-pre>HAVING</code>。</p>
+<p>比如：如果我们还希望筛选出平均价格在4000以下，并且平均分在7以上的品牌：</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> brand<span class="token punctuation">,</span> 
+<span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">as</span> count<span class="token punctuation">,</span> 
+<span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token function">AVG</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">as</span> avgPrice<span class="token punctuation">,</span>
+<span class="token function">MAX</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span> <span class="token keyword">as</span> maxPrice<span class="token punctuation">,</span>
+<span class="token function">MIN</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span> <span class="token keyword">as</span> minPrice<span class="token punctuation">,</span>
+<span class="token function">AVG</span><span class="token punctuation">(</span>score<span class="token punctuation">)</span> <span class="token keyword">as</span> avgScore
+<span class="token keyword">FROM</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> brand 
+<span class="token keyword">HAVING</span> avgPrice <span class="token operator">&lt;</span> <span class="token number">4000</span> <span class="token operator">and</span> avgScore <span class="token operator">></span> <span class="token number">7</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="创建多张表" tabindex="-1"><a class="header-anchor" href="#创建多张表" aria-hidden="true">#</a> 创建多张表</h3>
+<p>假如我们的上面的商品表中，对应的品牌还需要包含其他的信息：</p>
+<p>比如品牌的官网，品牌的世界排名，品牌的市值等等；</p>
+<p>如果我们直接在商品中去体现品牌相关的信息，会存在一些问题：</p>
+<p>一方面，products表中应该表示的都是商品相关的数据，应该又另外一张表来表示brand的数据；</p>
+<p>另一方面，多个商品使用的品牌是一致时，会存在大量的冗余数据；</p>
+<p>所以，我们可以将所有的品牌数据，单独放到一张表中，创建一张品牌的表</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span><span class="token punctuation">(</span>
+id <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+website <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+worldRank <span class="token keyword">INT</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>插入模拟数据</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> website<span class="token punctuation">,</span> worldRank<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'华为'</span><span class="token punctuation">,</span> <span class="token string">'www.huawei.com'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> website<span class="token punctuation">,</span> worldRank<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'小米'</span><span class="token punctuation">,</span> <span class="token string">'www.mi.com'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> website<span class="token punctuation">,</span> worldRank<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'苹果'</span><span class="token punctuation">,</span> <span class="token string">'www.apple.com'</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> website<span class="token punctuation">,</span> worldRank<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'oppo'</span><span class="token punctuation">,</span> <span class="token string">'www.oppo.com'</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> website<span class="token punctuation">,</span> worldRank<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'京东'</span><span class="token punctuation">,</span> <span class="token string">'www.jd.com'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> website<span class="token punctuation">,</span> worldRank<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'Google'</span><span class="token punctuation">,</span> <span class="token string">'www.google.com'</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="创建外键" tabindex="-1"><a class="header-anchor" href="#创建外键" aria-hidden="true">#</a> 创建外键</h4>
+<p>将两张表联系起来，我们可以将products中的brand_id关联到brand中的id：</p>
+<p>如果是创建表添加外键约束，我们需要在创建表的()最后添加如下语句；</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>brand_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> brand<span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>如果是表已经创建好，额外添加外键：</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">ADD</span> <span class="token identifier"><span class="token punctuation">`</span>brand_id<span class="token punctuation">`</span></span> <span class="token keyword">INT</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">ADD</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>brand_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> brand<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>现在我们可以将products中的brand_id关联到brand中的id的值：</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">UPDATE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">SET</span> <span class="token identifier"><span class="token punctuation">`</span>brand_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'华为'</span><span class="token punctuation">;</span>
+<span class="token keyword">UPDATE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">SET</span> <span class="token identifier"><span class="token punctuation">`</span>brand_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token number">4</span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'OPPO'</span><span class="token punctuation">;</span>
+<span class="token keyword">UPDATE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">SET</span> <span class="token identifier"><span class="token punctuation">`</span>brand_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token number">3</span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'苹果'</span><span class="token punctuation">;</span>
+<span class="token keyword">UPDATE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">SET</span> <span class="token identifier"><span class="token punctuation">`</span>brand_id<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword">WHERE</span> <span class="token identifier"><span class="token punctuation">`</span>brand<span class="token punctuation">`</span></span> <span class="token operator">=</span> <span class="token string">'小米'</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="外键存在时更新和删除数据" tabindex="-1"><a class="header-anchor" href="#外键存在时更新和删除数据" aria-hidden="true">#</a> 外键存在时更新和删除数据</h4>
+<p>先找到外键名</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>删除外键</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">DROP</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> products_ibfk_1<span class="token punctuation">;</span> <span class="token comment">//外键名products_ibfk_1</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>重新设置</p>
+<div class="language-sql ext-sql line-numbers-mode"><pre v-pre class="language-sql"><code><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>products<span class="token punctuation">`</span></span> <span class="token keyword">ADD</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>brand_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> brand<span class="token punctuation">(</span>id<span class="token punctuation">)</span> 
+<span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span> 
+<span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>CASCADE</strong>：当更新或删除某个记录时，会检查该记录是否有关联的外键记录，有的话：</p>
+<p>✓ 更新：那么会更新对应的记录； ✓ 删除：那么关联的记录会被一起删除掉；</p>
+<h3 id="多表查询" tabindex="-1"><a class="header-anchor" href="#多表查询" aria-hidden="true">#</a> 多表查询</h3>
+</div></template>
