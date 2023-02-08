@@ -1647,5 +1647,331 @@ ON DELETE CASCADE;
 
 ### 多表查询
 
+我们希望查询到产品的同时，显示对应的品牌相关的信息，因为数据是存放在两张表中，所以这个时候就需要进行多表查询。
 
+如果我们直接通过查询语句希望在多张表中查询到数据，这个时候是什么效果呢？
+
+```sql
+SELECT * FROM `products`, `brand`;//两张表会合在一起，事实上很多的数据是没有意义的
+```
+
+使用where来进行筛选
+
+```sql
+SELECT * FROM `products`, `brand` WHERE `products`.brand_id = `brand`.id;
+```
+
+事实上我们想要的效果并不是这样的，而且表中的某些特定的数据，这个时候我们可以使用 SQL JOIN 操作：
+
+也就是下面的多表连接
+
+#### 多表连接
+![1](/24.png)
+
+**左连接**
+
+如果我们希望获取到的是左边所有的数据（以左表为主）：
+
+这个时候就表示无论左边的表是否有对应的brand_id的值对应右边表的id，左边的数据都会被查询出来；
+
+这个也是开发中使用最多的情况，它的完整写法是LEFT [OUTER] JOIN，但是OUTER可以省略的；
+
+```sql
+SELECT * FROM `products` LEFT JOIN `brand` ON `products`.brand_id = `brand`.id;
+SELECT * FROM `products` LEFT JOIN `brand` ON `products`.brand_id = `brand`.id
+WHERE brand.id IS NULL
+```
+
+**右连接**
+
+```sql
+SELECT * FROM `products` RIGHT JOIN `brand` ON `products`.brand_id = `brand`.id;
+SELECT * FROM `products` RIGHT JOIN `brand` ON `products`.brand_id = `brand`.id
+WHERE products.id IS NULL;
+```
+
+**内连接**
+
+事实上内连接是表示左边的表和右边的表都有对应的数据关联：
+
+ 内连接在开发中偶尔也会有一些场景使用，看自己的场景。
+
+内连接有其他的写法：CROSS JOIN或者 JOIN都可以；
+
+```sql
+SELECT * FROM `products` INNER JOIN `brand` ON `products`.brand_id = `brand`.id
+```
+
+**全连接**
+
+```sql
+(SELECT * FROM `products` LEFT JOIN `brand` ON `products`.brand_id = `brand`.id)
+UNION
+(SELECT * FROM `products` RIGHT JOIN `brand` ON `products`.brand_id = `brand`.id);
+```
+
+#### 多对多关系数据准备
+
+在开发中我们还会遇到多对多的关系：
+
+比如学生可以选择多门课程，一个课程可以被多个学生选择；
+
+ 这种情况我们应该在开发中如何处理呢？
+
+我们先建立好两张表
+
+```sql
+# 创建学生表
+CREATE TABLE IF NOT EXISTS `students`(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(20) NOT NULL,
+age INT
+);
+# 创建课程表
+CREATE TABLE IF NOT EXISTS `courses`(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(20) NOT NULL,
+price DOUBLE NOT NULL
+);
+INSERT INTO `students` (name, age) VALUES('why', 18);
+INSERT INTO `students` (name, age) VALUES('tom', 22);
+INSERT INTO `students` (name, age) VALUES('lilei', 25);
+INSERT INTO `students` (name, age) VALUES('lucy', 16);
+INSERT INTO `students` (name, age) VALUES('lily', 20);
+INSERT INTO `courses` (name, price) VALUES ('英语', 100);
+INSERT INTO `courses` (name, price) VALUES ('语文', 666);
+INSERT INTO `courses` (name, price) VALUES ('数学', 888);
+INSERT INTO `courses` (name, price) VALUES ('历史', 80);
+```
+
+#### 创建关系表
+
+我们需要一个关系表来记录两张表中的数据关系：
+
+```sql
+# 创建关系表
+CREATE TABLE IF NOT EXISTS `students_select_courses`(
+id INT PRIMARY KEY AUTO_INCREMENT,
+student_id INT NOT NULL,
+course_id INT NOT NULL,
+FOREIGN KEY (student_id) REFERENCES students(id) ON UPDATE CASCADE,
+FOREIGN KEY (course_id) REFERENCES courses(id) ON UPDATE CASCADE
+);
+```
+
+```sql
+# why 选修了 英文和数学
+INSERT INTO `students_select_courses` (student_id, course_id) VALUES (1, 1);
+INSERT INTO `students_select_courses` (student_id, course_id) VALUES (1, 3);
+# lilei选修了 语文和数学和历史
+INSERT INTO `students_select_courses` (student_id, course_id) VALUES (3, 2);
+INSERT INTO `students_select_courses` (student_id, course_id) VALUES (3, 3);
+INSERT INTO `students_select_courses` (student_id, course_id) VALUES (3, 4);
+```
+
+#### 查询多对多数据（一）
+
+查询多条数据：
+
+```sql
+# 查询所有的学生选择的所有课程
+SELECT 
+stu.id studentId, stu.name studentName, cs.id courseId, cs.name courseName, cs.price coursePrice
+FROM `students` stu
+JOIN `students_select_courses` ssc
+ON stu.id = ssc.student_id
+JOIN `courses` cs 
+ON ssc.course_id = cs.id; 
+# 查询所有的学生选课情况
+SELECT 
+stu.id studentId, stu.name studentName, cs.id courseId, cs.name courseName, cs.price coursePrice
+FROM `students` stu
+LEFT JOIN `students_select_courses` ssc
+ON stu.id = ssc.student_id
+LEFT JOIN `courses` cs 
+ON ssc.course_id = cs.id; 
+```
+
+#### 查询多对多数据（二）
+
+查询单个学生选择了什么课
+
+```sql
+# why同学选择了哪些课程
+SELECT 
+stu.id studentId, stu.name studentName, cs.id courseId, cs.name courseName, cs.price coursePrice
+FROM `students` stu
+JOIN `students_select_courses` ssc
+ON stu.id = ssc.student_id
+JOIN `courses` cs 
+ON ssc.course_id = cs.id
+WHERE stu.id = 1; 
+# lily同学选择了哪些课程(注意，这里必须用左连接，事实上上面也应该使用的是左连接)
+SELECT 
+stu.id studentId, stu.name studentName, cs.id courseId, cs.name courseName, cs.price coursePrice
+FROM `students` stu
+LEFT JOIN `students_select_courses` ssc
+ON stu.id = ssc.student_id
+LEFT JOIN `courses` cs 
+ON ssc.course_id = cs.id
+WHERE stu.id = 5;
+```
+
+#### 查询多对多数据（三）
+
+查询哪些学生没有选择和哪些课程没有被选择：
+
+```sql
+# 哪些学生是没有选课的
+SELECT 
+stu.id studentId, stu.name studentName, cs.id courseId, cs.name courseName, cs.price coursePrice
+FROM `students` stu
+LEFT JOIN `students_select_courses` ssc
+ON stu.id = ssc.student_id
+LEFT JOIN `courses` cs
+ON ssc.course_id = cs.id
+WHERE cs.id IS NULL;
+# 查询哪些课程没有被学生选择
+SELECT 
+stu.id studentId, stu.name studentName, cs.id courseId, cs.name courseName, cs.price coursePrice
+FROM `students` stu
+RIGHT JOIN `students_select_courses` ssc
+ON stu.id = ssc.student_id
+RIGHT JOIN `courses` cs
+ON ssc.course_id = cs.id
+WHERE stu.id IS NULL
+```
+
+前面我们学习的查询语句，查询到的结果通常是一张表，比如查询手机+品牌信息,但是在真实开发中，实际上品牌信息的部分应该放入到一个对象中，那么我们可以使用下面的查询方式
+
+这个时候我们要用 JSON_OBJECT
+
+```sql
+SELECT products.id as id, products.title as title, products.price as price, products.score as score, 
+JSON_OBJECT('id', brand.id, 'name', brand.name, 'website', brand.website) as brand
+FROM products LEFT JOIN brand ON products.brand_id = brand.id;
+```
+
+#### 多对多转成数组
+
+在多对多关系中，我们希望查询到的是一个数组：
+
+ 这个时候我们要 JSON_ARRAYAGG和JSON_OBJECT结合来使用；
+
+```sql
+SELECT stu.id, stu.name, stu.age, 
+JSON_ARRAYAGG(JSON_OBJECT('id', cs.id, 'name', cs.name)) as courses 
+FROM students stu
+LEFT JOIN students_select_courses ssc ON stu.id = ssc.student_id
+LEFT JOIN courses cs ON ssc.course_id = cs.id
+GROUP BY stu.id;
+```
+
+### mysql2
+
+安装mysql2
+
+```
+npm install mysql2
+```
+
+创建连接
+
+```js
+const mysql = require('mysql2')
+const connection = mysql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 'Dengjunyu123.',
+  database: 'bilibili'  //数据库名称
+});
+```
+
+执行sql语句
+
+```js
+// 2.执行操作语句, 操作数据库
+const statement = 'SELECT * FROM `students`;'
+// structure query language: DDL/DML/DQL/DCL
+connection.query(statement, (err, values, fields) => {
+  if (err) {
+    console.log('查询失败:', err)
+    return
+  }
+  // 查看结果
+  console.log(values)
+  // console.log(fields)
+})
+```
+
+预处理语句
+
+```js
+// 2.执行一个SQL语句: 预处理语句
+const statement = 'SELECT * FROM `products` WHERE price > ? AND score > ?;'  //[1000, 8]传给??
+connection.execute(statement, [1000, 8], (err, values) => {
+  console.log(values)
+})
+```
+
+连接池
+
+前面我们是创建了一个连接（connection），但是如果我们有多个请求的话，该连接很有可能正在被占用，那么我们是否需要 每次一个请求都去创建一个新的连接呢？
+
+ 事实上，mysql2给我们提供了连接池（connection pools）；
+
+连接池可以在需要的时候自动创建连接，并且创建的连接不会被销毁，会放到连接池中，后续可以继续使用；
+
+我们可以在创建连接池的时候设置LIMIT，也就是最大创建个数；
+
+```js
+// 1.创建一个连接
+const connectionPool = mysql.createPool({
+  host: 'localhost',
+  port: 3306,
+  database: 'music_db',
+  user: 'root',
+  password: 'Coderwhy123.',
+  connectionLimit: 5
+})
+
+// 2.执行一个SQL语句: 预处理语句
+const statement = 'SELECT * FROM `products` WHERE price > ? AND score > ?;'
+connectionPool.execute(statement, [1000, 8], (err, values) => {
+  console.log(values)
+})
+```
+
+promise方式
+
+目前在JavaScript开发中我们更习惯Promise和await、async的方式，mysql2同样是支持的：
+
+```js
+const mysql = require('mysql2')
+
+// 1.创建一个连接
+const connectionPool = mysql.createPool({
+  host: 'localhost',
+  port: 3306,
+  database: 'music_db',
+  user: 'root',
+  password: 'Coderwhy123.',
+  connectionLimit: 5
+})
+
+// 2.执行一个SQL语句: 预处理语句
+const statement = 'SELECT * FROM `products` WHERE price > ? AND score > ?;'
+
+connectionPool.promise().execute(statement, [1000, 9]).then((res) => {
+  const [values, fields] = res
+  console.log('-------------------values------------------')
+  console.log(values)
+  console.log('-------------------fields------------------')
+  console.log(fields)
+}).catch(err => {
+  console.log(err)
+})
+
+```
 
