@@ -291,3 +291,127 @@ dnf info nodejs
 dnf install nodejs
 ```
 
+### 安装mysql
+
+```shell
+# 查找MySQL
+dnf search mysql-server
+
+# 查看MySQL，这里的版本是8.0.30
+dnf info mysql-server
+
+# 安装MySQL，这里加-y的意思是依赖的内容也安装
+dnf install mysql-server -y
+```
+
+### 启动mysql-server：
+
+```shell
+# 开启MySQL后台服务
+systemctl start mysqld
+
+# 查看MySQL服务：active (running)表示启动成功
+systemctl status mysqld
+
+# 随着系统一起启动
+systemctl enable mysqld
+```
+
+### 配置MySQL
+
+```shell
+mysql_secure_installation
+
+# 接下来有一些选项，比如密码强度等等一些
+# MySQL8开始通常设置密码强度较强，选择2
+# 其他的选项可以自行选择
+```
+![1](/30.png)
+
+选择y,然后2，设置密码，Dengjunyu123.
+![1](/31.png)
+![1](/32.png)
+
+**连接数据库**
+
+```shell
+mysql -uroot -p
+```
+
+这个时候必须要配置root可以远程连接：
+
+```shell
+# 使用mysql数据库
+use mysql;
+# 查看user表中，连接权限，默认看到root是localhost
+select host, user from user;
+# 修改权限
+update user set host = '%' where user = 'root';
+
+# 配置生效
+FLUSH PRIVILEGES;
+```
+
+但是呢，阿里云默认有在安全组中禁止掉3306端的连接的：
+
+这时候我们需要去安全组中添加3306端口
+
+![1](/32.png)
+
+### 数据库迁移
+
+![1](/34.png)
+
+然后新建一个数据库
+![1](/35.png)
+![1](/36.png)
+
+### 部署node项目
+
+在vscode中安装```remote-ssh```插件
+![1](/37.png)
+
+### pm2启动node程序
+
+刚才我们是通过终端启动的node程序，那么如果终端被关闭掉了呢？
+
+* 那么这个时候相当于启动的Node进程会被关闭掉；
+* 我们将无法继续访问服务器；
+
+在真实的部署过程中，我们会使用一个工具pm2来管理Node的进程：
+
+* PM2是一个Node的进程管理器；
+* 我们可以使用它来管理Node的后台进程；
+* 这样在关闭终端时，Node进程会继续执行，那么服务器就可以继续为前端提供服务了；
+
+安装pm2：
+
+```shell
+npm install pm2 -g
+```
+
+pm2常用的命令：
+
+```shell
+# 命名进程
+pm2 start ./src/main.js --name my-api 
+# 显示所有进程状态
+pm2 list               
+# 停止指定的进程
+pm2 stop 0       
+# 停止所有进程
+pm2 stop all           
+# 重启所有进程
+pm2 restart all      
+# 重启指定的进程
+pm2 restart 0          
+
+# 杀死指定的进程
+pm2 delete 0           
+# 杀死全部进程
+pm2 delete all   
+
+#后台运行pm2，启动4个app.js，实现负载均衡
+pm2 start app.js -i 4 
+```
+

@@ -219,4 +219,90 @@ dnf info nodejs
 
 <span class="token comment"># 安装nodejs</span>
 dnf <span class="token function">install</span> nodejs
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="安装mysql" tabindex="-1"><a class="header-anchor" href="#安装mysql" aria-hidden="true">#</a> 安装mysql</h3>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token comment"># 查找MySQL</span>
+dnf search mysql-server
+
+<span class="token comment"># 查看MySQL，这里的版本是8.0.30</span>
+dnf info mysql-server
+
+<span class="token comment"># 安装MySQL，这里加-y的意思是依赖的内容也安装</span>
+dnf <span class="token function">install</span> mysql-server -y
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="启动mysql-server" tabindex="-1"><a class="header-anchor" href="#启动mysql-server" aria-hidden="true">#</a> 启动mysql-server：</h3>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token comment"># 开启MySQL后台服务</span>
+systemctl start mysqld
+
+<span class="token comment"># 查看MySQL服务：active (running)表示启动成功</span>
+systemctl status mysqld
+
+<span class="token comment"># 随着系统一起启动</span>
+systemctl <span class="token builtin class-name">enable</span> mysqld
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="配置mysql" tabindex="-1"><a class="header-anchor" href="#配置mysql" aria-hidden="true">#</a> 配置MySQL</h3>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>mysql_secure_installation
+
+<span class="token comment"># 接下来有一些选项，比如密码强度等等一些</span>
+<span class="token comment"># MySQL8开始通常设置密码强度较强，选择2</span>
+<span class="token comment"># 其他的选项可以自行选择</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="/30.png" alt="1"></p>
+<p>选择y,然后2，设置密码，Dengjunyu123.
+<img src="/31.png" alt="1">
+<img src="/32.png" alt="1"></p>
+<p><strong>连接数据库</strong></p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>mysql -uroot -p
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>这个时候必须要配置root可以远程连接：</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token comment"># 使用mysql数据库</span>
+use mysql<span class="token punctuation">;</span>
+<span class="token comment"># 查看user表中，连接权限，默认看到root是localhost</span>
+<span class="token keyword">select</span> host, user from user<span class="token punctuation">;</span>
+<span class="token comment"># 修改权限</span>
+update user <span class="token builtin class-name">set</span> <span class="token function">host</span> <span class="token operator">=</span> <span class="token string">'%'</span> where user <span class="token operator">=</span> <span class="token string">'root'</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 配置生效</span>
+FLUSH PRIVILEGES<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>但是呢，阿里云默认有在安全组中禁止掉3306端的连接的：</p>
+<p>这时候我们需要去安全组中添加3306端口</p>
+<p><img src="/32.png" alt="1"></p>
+<h3 id="数据库迁移" tabindex="-1"><a class="header-anchor" href="#数据库迁移" aria-hidden="true">#</a> 数据库迁移</h3>
+<p><img src="/34.png" alt="1"></p>
+<p>然后新建一个数据库
+<img src="/35.png" alt="1">
+<img src="/36.png" alt="1"></p>
+<h3 id="部署node项目" tabindex="-1"><a class="header-anchor" href="#部署node项目" aria-hidden="true">#</a> 部署node项目</h3>
+<p>在vscode中安装<code v-pre>remote-ssh</code>插件
+<img src="/37.png" alt="1"></p>
+<h3 id="pm2启动node程序" tabindex="-1"><a class="header-anchor" href="#pm2启动node程序" aria-hidden="true">#</a> pm2启动node程序</h3>
+<p>刚才我们是通过终端启动的node程序，那么如果终端被关闭掉了呢？</p>
+<ul>
+<li>那么这个时候相当于启动的Node进程会被关闭掉；</li>
+<li>我们将无法继续访问服务器；</li>
+</ul>
+<p>在真实的部署过程中，我们会使用一个工具pm2来管理Node的进程：</p>
+<ul>
+<li>PM2是一个Node的进程管理器；</li>
+<li>我们可以使用它来管理Node的后台进程；</li>
+<li>这样在关闭终端时，Node进程会继续执行，那么服务器就可以继续为前端提供服务了；</li>
+</ul>
+<p>安装pm2：</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> pm2 -g
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>pm2常用的命令：</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token comment"># 命名进程</span>
+pm2 start ./src/main.js --name my-api 
+<span class="token comment"># 显示所有进程状态</span>
+pm2 list               
+<span class="token comment"># 停止指定的进程</span>
+pm2 stop <span class="token number">0</span>       
+<span class="token comment"># 停止所有进程</span>
+pm2 stop all           
+<span class="token comment"># 重启所有进程</span>
+pm2 restart all      
+<span class="token comment"># 重启指定的进程</span>
+pm2 restart <span class="token number">0</span>          
+
+<span class="token comment"># 杀死指定的进程</span>
+pm2 delete <span class="token number">0</span>           
+<span class="token comment"># 杀死全部进程</span>
+pm2 delete all   
+
+<span class="token comment">#后台运行pm2，启动4个app.js，实现负载均衡</span>
+pm2 start app.js -i <span class="token number">4</span> 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
