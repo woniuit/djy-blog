@@ -267,3 +267,27 @@ app.listen(8000, () => {
 
 ```
 
+## 部署
+
+### 连接云服务器
+
+用git bash ssh工具
+
+```shell
+ssh root@ip地址公
+```
+![1](/25.png)
+
+### 安装nodejs
+
+```shell
+# 搜索软件包
+dnf search nodejs
+
+# 查看软件包信息: nodejs的版本是10.21.0
+dnf info nodejs
+
+# 安装nodejs
+dnf install nodejs
+```
+
