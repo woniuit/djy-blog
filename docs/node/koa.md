@@ -415,3 +415,44 @@ pm2 delete all
 pm2 start app.js -i 4 
 ```
 
+###  jenkins自动化部署
+
+#### 安装Java环境
+
+Jenkins本身是依赖Java的，所以我们需要先安装Java环境：
+
+* 这里我安装了Java1.8的环境
+
+```shell
+dnf search java-1.8
+dnf install java-1.8.0-openjdk.x86_64
+然后敲java验证是否安装成功
+```
+
+#### 安装Jenkins
+
+因为Jenkins本身是没有在dnf的软件仓库包中的，所以我们需要连接Jenkins仓库：
+
+* wget是Linux中下载文件的一个工具，-O表示输出到某个文件夹并且命名为什么文件；
+* rpm：全称为**The RPM Package Manage**，是Linux下一个软件包管理器；
+
+```shell
+wget –O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+#然后输入ls查看是否安装成功
+#修改文件路径
+mv jenkins.repo /etc/yum.repos.d/
+# 导入GPG密钥以确保您的软件合法
+rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+# 或者
+rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+```
+
+编辑一下文件/etc/yum.repos.d/jenkins.repo
+
+* 可以通过vim编辑
+
+  ```shell
+  vi jenkins.rep
+  ```
+
+  

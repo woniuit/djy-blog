@@ -249,7 +249,7 @@ http1<span class="token punctuation">.</span><span class="token function">reques
                 <span class="token punctuation">}</span>
 
                 ElMessage<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token comment">/***** 处理结束 *****/</span>
+                <span class="token doc-comment comment">/***** 处理结束 *****/</span>
                 <span class="token comment">//如果不需要错误处理，以上的处理过程都可省略</span>
                 <span class="token keyword">return</span> <span class="token builtin">Promise</span><span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token comment">// return err;</span>

@@ -305,4 +305,34 @@ pm2 delete all
 
 <span class="token comment">#后台运行pm2，启动4个app.js，实现负载均衡</span>
 pm2 start app.js -i <span class="token number">4</span> 
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="jenkins自动化部署" tabindex="-1"><a class="header-anchor" href="#jenkins自动化部署" aria-hidden="true">#</a> jenkins自动化部署</h3>
+<h4 id="安装java环境" tabindex="-1"><a class="header-anchor" href="#安装java环境" aria-hidden="true">#</a> 安装Java环境</h4>
+<p>Jenkins本身是依赖Java的，所以我们需要先安装Java环境：</p>
+<ul>
+<li>这里我安装了Java1.8的环境</li>
+</ul>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>dnf search java-1.8
+dnf <span class="token function">install</span> java-1.8.0-openjdk.x86_64
+然后敲java验证是否安装成功
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="安装jenkins" tabindex="-1"><a class="header-anchor" href="#安装jenkins" aria-hidden="true">#</a> 安装Jenkins</h4>
+<p>因为Jenkins本身是没有在dnf的软件仓库包中的，所以我们需要连接Jenkins仓库：</p>
+<ul>
+<li>wget是Linux中下载文件的一个工具，-O表示输出到某个文件夹并且命名为什么文件；</li>
+<li>rpm：全称为<strong>The RPM Package Manage</strong>，是Linux下一个软件包管理器；</li>
+</ul>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">wget</span> –O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+<span class="token comment">#然后输入ls查看是否安装成功</span>
+<span class="token comment">#修改文件路径</span>
+<span class="token function">mv</span> jenkins.repo /etc/yum.repos.d/
+<span class="token comment"># 导入GPG密钥以确保您的软件合法</span>
+<span class="token function">rpm</span> --import https://pkg.jenkins.io/redhat/jenkins.io.key
+<span class="token comment"># 或者</span>
+<span class="token function">rpm</span> --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>编辑一下文件/etc/yum.repos.d/jenkins.repo</p>
+<ul>
+<li>
+<p>可以通过vim编辑</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">vi</span> jenkins.rep
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></li>
+</ul>
+</div></template>
