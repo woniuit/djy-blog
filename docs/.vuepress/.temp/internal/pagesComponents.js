@@ -31,14 +31,6 @@ export const pagesComponents = {
   "v-7e92875d": defineAsyncComponent(() => import(/* webpackChunkName: "v-7e92875d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/git/git.html.vue")),
   // path: /go/go.html
   "v-7e6b3683": defineAsyncComponent(() => import(/* webpackChunkName: "v-7e6b3683" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/go/go.html.vue")),
-  // path: /node/express.html
-  "v-525bec7d": defineAsyncComponent(() => import(/* webpackChunkName: "v-525bec7d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/node/express.html.vue")),
-  // path: /node/koa.html
-  "v-2668f2e0": defineAsyncComponent(() => import(/* webpackChunkName: "v-2668f2e0" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/node/koa.html.vue")),
-  // path: /node/node.html
-  "v-62c92783": defineAsyncComponent(() => import(/* webpackChunkName: "v-62c92783" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/node/node.html.vue")),
-  // path: /node/package.json.html
-  "v-3190f696": defineAsyncComponent(() => import(/* webpackChunkName: "v-3190f696" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/node/package.json.html.vue")),
   // path: /js/class.html
   "v-65260ee4": defineAsyncComponent(() => import(/* webpackChunkName: "v-65260ee4" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/js/class.html.vue")),
   // path: /js/dom.html
@@ -61,6 +53,14 @@ export const pagesComponents = {
   "v-4b3e65a8": defineAsyncComponent(() => import(/* webpackChunkName: "v-4b3e65a8" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/js/防抖和节流.html.vue")),
   // path: /js/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1.html
   "v-43a0dbc3": defineAsyncComponent(() => import(/* webpackChunkName: "v-43a0dbc3" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/js/面向对象.html.vue")),
+  // path: /node/express.html
+  "v-525bec7d": defineAsyncComponent(() => import(/* webpackChunkName: "v-525bec7d" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/node/express.html.vue")),
+  // path: /node/koa.html
+  "v-2668f2e0": defineAsyncComponent(() => import(/* webpackChunkName: "v-2668f2e0" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/node/koa.html.vue")),
+  // path: /node/node.html
+  "v-62c92783": defineAsyncComponent(() => import(/* webpackChunkName: "v-62c92783" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/node/node.html.vue")),
+  // path: /node/package.json.html
+  "v-3190f696": defineAsyncComponent(() => import(/* webpackChunkName: "v-3190f696" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/node/package.json.html.vue")),
   // path: /react/admin%E9%A1%B9%E7%9B%AE.html
   "v-65f630fe": defineAsyncComponent(() => import(/* webpackChunkName: "v-65f630fe" */"D:/my-项目/my-blogs/docs/.vuepress/.temp/pages/react/admin项目.html.vue")),
   // path: /react/hooks.html

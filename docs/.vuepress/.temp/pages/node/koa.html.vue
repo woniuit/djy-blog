@@ -315,24 +315,30 @@ pm2 start app.js -i <span class="token number">4</span>
 dnf <span class="token function">install</span> java-1.8.0-openjdk.x86_64
 然后敲java验证是否安装成功
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="安装jenkins" tabindex="-1"><a class="header-anchor" href="#安装jenkins" aria-hidden="true">#</a> 安装Jenkins</h4>
-<p>因为Jenkins本身是没有在dnf的软件仓库包中的，所以我们需要连接Jenkins仓库：</p>
-<ul>
-<li>wget是Linux中下载文件的一个工具，-O表示输出到某个文件夹并且命名为什么文件；</li>
-<li>rpm：全称为<strong>The RPM Package Manage</strong>，是Linux下一个软件包管理器；</li>
-</ul>
-<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">wget</span> –O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
-<span class="token comment">#然后输入ls查看是否安装成功</span>
-<span class="token comment">#修改文件路径</span>
-<span class="token function">mv</span> jenkins.repo /etc/yum.repos.d/
-<span class="token comment"># 导入GPG密钥以确保您的软件合法</span>
-<span class="token function">rpm</span> --import https://pkg.jenkins.io/redhat/jenkins.io.key
-<span class="token comment"># 或者</span>
-<span class="token function">rpm</span> --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>编辑一下文件/etc/yum.repos.d/jenkins.repo</p>
-<ul>
-<li>
-<p>可以通过vim编辑</p>
-<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">vi</span> jenkins.rep
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></li>
-</ul>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token comment"># 下载 Jenkins 资源</span>
+<span class="token function">sudo</span> <span class="token function">wget</span> -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+<span class="token comment"># 获取并导入信任 的包制作者的秘钥</span>
+<span class="token function">sudo</span> <span class="token function">rpm</span> --import https://pkg.jenkins.io/redhat/jenkins.io.key
+<span class="token comment"># 升级 yum 源中的所有包</span>
+<span class="token function">sudo</span> yum upgrade
+<span class="token comment"># Jenkins 依赖于 java 所以需要安装 JDK</span>
+<span class="token function">sudo</span> yum <span class="token function">install</span> java-11-openjdk
+<span class="token comment"># 安装 Jenkins</span>
+<span class="token function">sudo</span> yum <span class="token function">install</span> jenkins
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>如果最终 <code v-pre>Jenkins</code> 没有找到包而导致没有安装成功，检查第一步和第二部执行结果并重新执行。</p>
+<h4 id="启动jenkins" tabindex="-1"><a class="header-anchor" href="#启动jenkins" aria-hidden="true">#</a> 启动Jenkins</h4>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token comment"># 启动 Jenkins 服务</span>
+systemctl start jenkins
+<span class="token comment"># 重启 Jenkins 服务</span>
+systemctl restart jenkins
+<span class="token comment"># 停止 Jenkins 服务</span>
+systemctl stop jenkins
+<span class="token comment"># 查看 Jenkins 服务状态</span>
+systemctl status jenkins
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>启动成功之后在浏览器输入服务器ip地址加上在安全组配置的8080端口</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token number">8.134</span>.23.237:8080
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><img src="/38.png" alt="1"></p>
+<p><code v-pre>cat /var/lib/jenkins/secrets/initialAdminPassword</code> 查看密码</p>
+<p>随后进入插件安装页面，暂时安装系统推荐插件即可,然后创建用户</p>
+<h2 id="nginx安装和配置" tabindex="-1"><a class="header-anchor" href="#nginx安装和配置" aria-hidden="true">#</a> nginx安装和配置</h2>
 </div></template>

@@ -431,28 +431,94 @@ dnf install java-1.8.0-openjdk.x86_64
 
 #### 安装Jenkins
 
-因为Jenkins本身是没有在dnf的软件仓库包中的，所以我们需要连接Jenkins仓库：
-
-* wget是Linux中下载文件的一个工具，-O表示输出到某个文件夹并且命名为什么文件；
-* rpm：全称为**The RPM Package Manage**，是Linux下一个软件包管理器；
-
 ```shell
-wget –O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
-#然后输入ls查看是否安装成功
-#修改文件路径
-mv jenkins.repo /etc/yum.repos.d/
-# 导入GPG密钥以确保您的软件合法
-rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
-# 或者
-rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+# 下载 Jenkins 资源
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+# 获取并导入信任 的包制作者的秘钥
+sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+# 升级 yum 源中的所有包
+sudo yum upgrade
+# Jenkins 依赖于 java 所以需要安装 JDK
+sudo yum install java-11-openjdk
+# 安装 Jenkins
+sudo yum install jenkins
 ```
 
-编辑一下文件/etc/yum.repos.d/jenkins.repo
+如果最终 `Jenkins` 没有找到包而导致没有安装成功，检查第一步和第二部执行结果并重新执行。
 
-* 可以通过vim编辑
+#### 启动Jenkins
 
-  ```shell
-  vi jenkins.rep
-  ```
+```shell
+# 启动 Jenkins 服务
+systemctl start jenkins
+# 重启 Jenkins 服务
+systemctl restart jenkins
+# 停止 Jenkins 服务
+systemctl stop jenkins
+# 查看 Jenkins 服务状态
+systemctl status jenkins
+```
 
-  
+启动成功之后在浏览器输入服务器ip地址加上在安全组配置的8080端口
+
+```shell
+8.134.23.237:8080
+```
+![1](/38.png)
+
+`cat /var/lib/jenkins/secrets/initialAdminPassword` 查看密码
+
+随后进入插件安装页面，暂时安装系统推荐插件即可,然后创建用户
+
+## nginx安装和配置
+
+安装
+
+```shell
+dnf install nginx
+```
+
+启动nginx：
+
+```shell
+systemctl start nginx
+systemctl status nginx
+systemctl enable nginx
+```
+
+然后cd
+
+```shell
+cd /root/
+```
+
+```shell
+mkdir djycms  //ls查看是否创建文件夹成功
+```
+
+```shell
+touch index.html //ls查看是否创建成功
+```
+
+找到nginx命令路径
+
+```shell
+which nginx
+```
+
+```shell
+/usr/sbin/nginx -V //找到nginx配置文件的路径，找到conf-path=/etc/nginx/nginx.conf
+```
+
+```shell
+/usr/sbin/nginx -t  //直接输出配置文件路径在哪里 
+```
+
+
+
+然后用vscode中的remote-ssh插件连接远程服务器
+
+![1](/38.png)
+
+就可以看到刚才创建的djycms文件夹了
+
