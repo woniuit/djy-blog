@@ -341,4 +341,100 @@ systemctl status jenkins
 <p><code v-pre>cat /var/lib/jenkins/secrets/initialAdminPassword</code> 查看密码</p>
 <p>随后进入插件安装页面，暂时安装系统推荐插件即可,然后创建用户</p>
 <h2 id="nginx安装和配置" tabindex="-1"><a class="header-anchor" href="#nginx安装和配置" aria-hidden="true">#</a> nginx安装和配置</h2>
+<h3 id="安装-1" tabindex="-1"><a class="header-anchor" href="#安装-1" aria-hidden="true">#</a> 安装</h3>
+<p><strong>安装相应的工具包和库</strong></p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>yum -y <span class="token function">install</span> gcc gcc-c++ autoconf pcre-devel <span class="token function">make</span> automake
+yum -y <span class="token function">install</span> <span class="token function">wget</span> httpd-tools <span class="token function">vim</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>基本上没什么大问题就会显示“Complete!”</p>
+<p>恭喜你，服务器环境基本安装完毕～</p>
+<h4 id="搭建nginx配置" tabindex="-1"><a class="header-anchor" href="#搭建nginx配置" aria-hidden="true">#</a> <strong>搭建Nginx配置</strong></h4>
+<p>首先看看服务器内yum内的Nginx源的版本</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>yum list <span class="token operator">|</span> <span class="token function">grep</span> nginx
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>在终端输入如下</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">vim</span> /etc/yum.repos.d/nginx.repo
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>后填入下列代码，注意，我的centos是7.x版本，所以我写的是7，同学们可以按照自己的版本来</p>
+<p><img src="/56.png" alt="1"></p>
+<p>保存退出，然后安装 nginx</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>yum <span class="token function">install</span> nginx
+nginx -v
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="nginx的配置文件" tabindex="-1"><a class="header-anchor" href="#nginx的配置文件" aria-hidden="true">#</a> <strong>Nginx的配置文件</strong></h4>
+<p>通过<code v-pre>rpm -ql nginx</code> 指令查看 Nginx 都安装到了哪些目录</p>
+<p>解释一下 <code v-pre>/etc/nginx/nginx.conf</code>，因为这个是 Nginx 的主配置，比较重要</p>
+<p>输入命令行</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token builtin class-name">cd</span> /etc/nginx
+<span class="token function">vim</span> nginx.conf
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>然后输入i编辑</p>
+<p>把user后面的改成root
+<img src="/4.png" alt="1"></p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>server <span class="token punctuation">{</span>
+        listen       <span class="token number">80</span><span class="token punctuation">;</span>
+        listen       <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:80<span class="token punctuation">;</span>
+        server_name  _<span class="token punctuation">;</span>
+        root         /usr/share/nginx/html<span class="token punctuation">;</span>  //这个就是我们默认访问的页面
+
+        <span class="token comment"># Load configuration files for the default server block.</span>
+        include /etc/nginx/default.d/*.conf<span class="token punctuation">;</span>
+
+        error_page <span class="token number">404</span> /404.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /404.html <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+
+        error_page <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span> /50x.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>server <span class="token punctuation">{</span>
+        listen       <span class="token number">80</span><span class="token punctuation">;</span>
+        listen       <span class="token punctuation">[</span>::<span class="token punctuation">]</span>:80<span class="token punctuation">;</span>
+        server_name  _<span class="token punctuation">;</span>
+       注释掉 root         /usr/share/nginx/html<span class="token punctuation">;</span>  //这个就是我们默认访问的页面 
+
+        <span class="token comment"># Load configuration files for the default server block.</span>
+        include /etc/nginx/default.d/*.conf<span class="token punctuation">;</span>
+        添加
+         location / <span class="token punctuation">{</span>
+           root /root/djycms<span class="token punctuation">;</span> //我们文件地址
+           index index.html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        error_page <span class="token number">404</span> /404.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /404.html <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+
+        error_page <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span> /50x.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后保存，输入<code v-pre>nginx -s reload</code> 会报错<code v-pre>nginx: [error] open() &quot;/var/run/nginx.pid&quot; failed (2: No such file or directory)</code>， 这个时候可以如下</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>// 先输入
+nginx
+nginx -s reload
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>或者是如果你使用 iTerm 的话，可以配置 .bashrc 文件，添加一个 alias 的配置来简化运行nginx指令；或者是通过指令 <code v-pre>systemctl start nginx.service</code> 启动 nginx 服务，通过指令 <code v-pre>ps aux | grep nginx</code> 查看 nginx 是否是否启动；还有很多 nginx 的指令，大家自行去官网查看</p>
+<p>启动nginx：</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>systemctl start nginx
+systemctl status nginx
+systemctl <span class="token builtin class-name">enable</span> nginx
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后cd</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token builtin class-name">cd</span> /root/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">mkdir</span> djycms  //ls查看是否创建文件夹成功
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">touch</span> index.html //ls查看是否创建成功
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>如果遇到问题先查看nginx是否在运行</p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> nginx //查看是否运行
+<span class="token function">service</span> nginx stop //停止
+<span class="token function">ps</span> -ef <span class="token operator">|</span><span class="token function">grep</span> nginx //查看是否运行
+nginx -s stop //停止
+<span class="token function">service</span> nginx stop //停止
+<span class="token function">chkconfig</span> nginx off
+<span class="token function">rm</span> -rf /etc/init.d/nginx
+<span class="token function">find</span> / -name nginx //查找关于nginx文件
+<span class="token function">rm</span> -rf /usr/sbin/nginx //删除关于nginx的文件
+yum remove nginx
+systemctl status nginx
+yum <span class="token function">install</span> -y nginx //重新安装
+systemctl start nginx //启动
+<span class="token builtin class-name">cd</span> /etc/nginx/ //进入nginx的conf目录（按照自己实际的路径来） nginx -t查找文件夹
+<span class="token function">vim</span> nginx.conf
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后用vscode中的remote-ssh插件连接远程服务器</p>
+<p><img src="/38.png" alt="1"></p>
+<p>就可以看到刚才创建的djycms文件夹了</p>
 </div></template>

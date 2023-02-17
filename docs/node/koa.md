@@ -472,11 +472,120 @@ systemctl status jenkins
 
 ## nginx安装和配置
 
-安装
+### 安装
+
+**安装相应的工具包和库**
 
 ```shell
-dnf install nginx
+yum -y install gcc gcc-c++ autoconf pcre-devel make automake
+yum -y install wget httpd-tools vim
 ```
+
+基本上没什么大问题就会显示“Complete!”
+
+恭喜你，服务器环境基本安装完毕～
+
+#### **搭建Nginx配置**
+
+首先看看服务器内yum内的Nginx源的版本
+
+```shell
+yum list | grep nginx
+```
+
+在终端输入如下
+
+```shell
+vim /etc/yum.repos.d/nginx.repo
+```
+
+后填入下列代码，注意，我的centos是7.x版本，所以我写的是7，同学们可以按照自己的版本来
+
+![1](/56.png)
+
+保存退出，然后安装 nginx
+
+```shell
+yum install nginx
+nginx -v
+```
+
+#### **Nginx的配置文件**
+
+通过`rpm -ql nginx` 指令查看 Nginx 都安装到了哪些目录
+
+解释一下 `/etc/nginx/nginx.conf`，因为这个是 Nginx 的主配置，比较重要
+
+输入命令行
+
+```shell
+cd /etc/nginx
+vim nginx.conf
+```
+
+然后输入i编辑
+
+把user后面的改成root
+![1](/4.png)
+
+```shell
+server {
+        listen       80;
+        listen       [::]:80;
+        server_name  _;
+        root         /usr/share/nginx/html;  //这个就是我们默认访问的页面
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        error_page 404 /404.html;
+        location = /404.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+        }
+    }
+```
+
+```shell
+server {
+        listen       80;
+        listen       [::]:80;
+        server_name  _;
+       注释掉 root         /usr/share/nginx/html;  //这个就是我们默认访问的页面 
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+        添加
+         location / {
+           root /root/djycms; //我们文件地址
+           index index.html;
+        }
+
+        error_page 404 /404.html;
+        location = /404.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+        }
+    }
+```
+
+然后保存，输入`nginx -s reload` 会报错`nginx: [error] open() "/var/run/nginx.pid" failed (2: No such file or directory)`， 这个时候可以如下
+
+```shell
+// 先输入
+nginx
+nginx -s reload
+```
+
+或者是如果你使用 iTerm 的话，可以配置 .bashrc 文件，添加一个 alias 的配置来简化运行nginx指令；或者是通过指令 `systemctl start nginx.service` 启动 nginx 服务，通过指令 `ps aux | grep nginx` 查看 nginx 是否是否启动；还有很多 nginx 的指令，大家自行去官网查看
+
+
+
+
 
 启动nginx：
 
@@ -500,19 +609,26 @@ mkdir djycms  //ls查看是否创建文件夹成功
 touch index.html //ls查看是否创建成功
 ```
 
-找到nginx命令路径
+如果遇到问题先查看nginx是否在运行
 
 ```shell
-which nginx
+ps -ef | grep nginx //查看是否运行
+service nginx stop //停止
+ps -ef |grep nginx //查看是否运行
+nginx -s stop //停止
+service nginx stop //停止
+chkconfig nginx off
+rm -rf /etc/init.d/nginx
+find / -name nginx //查找关于nginx文件
+rm -rf /usr/sbin/nginx //删除关于nginx的文件
+yum remove nginx
+systemctl status nginx
+yum install -y nginx //重新安装
+systemctl start nginx //启动
+cd /etc/nginx/ //进入nginx的conf目录（按照自己实际的路径来） nginx -t查找文件夹
+vim nginx.conf
 ```
 
-```shell
-/usr/sbin/nginx -V //找到nginx配置文件的路径，找到conf-path=/etc/nginx/nginx.conf
-```
-
-```shell
-/usr/sbin/nginx -t  //直接输出配置文件路径在哪里 
-```
 
 
 
