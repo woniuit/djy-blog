@@ -434,7 +434,65 @@ yum <span class="token function">install</span> -y nginx //重新安装
 systemctl start nginx //启动
 <span class="token builtin class-name">cd</span> /etc/nginx/ //进入nginx的conf目录（按照自己实际的路径来） nginx -t查找文件夹
 <span class="token function">vim</span> nginx.conf
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后用vscode中的remote-ssh插件连接远程服务器</p>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="安装git" tabindex="-1"><a class="header-anchor" href="#安装git" aria-hidden="true">#</a> 安装git</h4>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code>dnf <span class="token function">install</span> <span class="token function">git</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>然后用vscode中的remote-ssh插件连接远程服务器</p>
 <p><img src="/38.png" alt="1"></p>
 <p>就可以看到刚才创建的djycms文件夹了</p>
+<h2 id="jenkins建项目" tabindex="-1"><a class="header-anchor" href="#jenkins建项目" aria-hidden="true">#</a> Jenkins建项目</h2>
+<p>左边的新建任务
+<img src="/54.png" alt="1">
+<img src="/55.png" alt="1">
+<img src="/57.png" alt="1">
+<img src="/58.png" alt="1">
+<img src="/59.png" alt="1">
+<img src="/60.png" alt="1">
+<img src="/61.png" alt="1">
+<img src="/62.png" alt="1">
+<img src="/63.png" alt="1">
+<img src="/64.png" alt="1">
+<img src="/65.png" alt="1">
+<img src="/66.png" alt="1"></p>
+<h4 id="构建触发器" tabindex="-1"><a class="header-anchor" href="#构建触发器" aria-hidden="true">#</a> 构建触发器</h4>
+<p>这里的触发器规则是这样的：</p>
+<ul>
+<li>定时字符串从左往右分别是：分 时 日 月 周</li>
+</ul>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token comment">#每半小时构建一次OR每半小时检查一次远程代码分支，有更新则构建</span>
+H/30 * * * *
+
+<span class="token comment">#每两小时构建一次OR每两小时检查一次远程代码分支，有更新则构建</span>
+H H/2 * * *
+
+<span class="token comment">#每天凌晨两点定时构建</span>
+H <span class="token number">2</span> * * *
+
+<span class="token comment">#每月15号执行构建</span>
+H H <span class="token number">15</span> * *
+
+<span class="token comment">#工作日，上午9点整执行</span>
+H <span class="token number">9</span> * * <span class="token number">1</span>-5
+
+<span class="token comment">#每周1,3,5，从8:30开始，截止19:30，每4小时30分构建一次</span>
+H/30 <span class="token number">8</span>-20/4 * * <span class="token number">1,3</span>,5
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="/68.png" alt="1">
+<img src="/69.png" alt="1"></p>
+<p>安装完后勾选重启
+<img src="/70.png" alt="1">
+<img src="/71.png" alt="1"></p>
+<p>然后点击保存
+<img src="/72.png" alt="1">
+<img src="/73.png" alt="1">
+<img src="/74.png" alt="1">
+<img src="/75.png" alt="1">
+<img src="/76.png" alt="1"></p>
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token builtin class-name">pwd</span>
+<span class="token function">node</span> -v
+<span class="token function">npm</span> -v
+<span class="token function">npm</span> <span class="token function">install</span>
+<span class="token function">npm</span> run build
+<span class="token builtin class-name">echo</span> <span class="token string">'构建完成'</span>
+<span class="token function">ls</span>
+<span class="token function">mv</span> -rf ./dist/*/root/djycms    //把dist文件强制移到远程服务器root的djycms下面
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后点击保存，再点击左边的立即构建</p>
 </div></template>
